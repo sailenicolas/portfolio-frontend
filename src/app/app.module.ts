@@ -7,31 +7,33 @@ import { AppComponent } from './app.component';
 import { NavComponent } from './components/shared/nav/nav.component';
 import { LoginComponent } from './components/login/login.component';
 import { UserComponent } from './components/user/user.component';
-import {AuthGuard} from "./guard/auth.guard";
+import { AuthGuard } from './guard/auth.guard';
 import { CardComponent } from './components/card/card.component';
 import { PortfolioComponent } from './components/portfolio/portfolio.component';
 import { HeaderComponent } from './components/shared/header/header.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatToolbarModule} from "@angular/material/toolbar";
-import {MatIconModule} from "@angular/material/icon";
-import {MatMenuModule} from "@angular/material/menu";
-import {MatInputModule} from "@angular/material/input";
-import {ReactiveFormsModule} from "@angular/forms";
-import {MatSidenavModule} from "@angular/material/sidenav";
-import {MatGridListModule} from "@angular/material/grid-list";
-import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
-import {MatButtonModule} from "@angular/material/button";
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatInputModule } from '@angular/material/input';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatButtonModule } from '@angular/material/button';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { HttpclientService } from './services/httpclient.service';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    NavComponent,
-    LoginComponent,
-    UserComponent,
-    CardComponent,
-    PortfolioComponent,
-    HeaderComponent
-  ],
+	declarations: [
+		AppComponent,
+		NavComponent,
+		LoginComponent,
+		UserComponent,
+		CardComponent,
+		PortfolioComponent,
+		HeaderComponent,
+	],
 	imports: [
 		BrowserModule,
 		AppRoutingModule,
@@ -45,8 +47,16 @@ import {MatButtonModule} from "@angular/material/button";
 		MatGridListModule,
 		MatProgressSpinnerModule,
 		MatButtonModule,
+		FormsModule,
+		HttpClientModule,
 	],
-  providers: [AuthGuard],
-  bootstrap: [AppComponent]
+	providers: [
+		AuthGuard,
+		{
+			provide: HTTP_INTERCEPTORS,
+			useClass: HttpclientService,
+		},
+	],
+	bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
