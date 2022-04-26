@@ -1,32 +1,22 @@
 import { Injectable } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
-
-interface CurrenUser {
-	token: string;
-	refresh_token: string;
-	current_user: Object;
-}
+import { CurrentUser } from '../class/currentuser';
 
 @Injectable({
 	providedIn: 'root',
 })
 export class AuthService {
-	constructor(
-		private loggedIn: boolean,
-		private currentUser: CurrenUser,
-		private http: HttpClient
-	) {}
+	constructor(public currentUser: CurrentUser, private http: HttpClient) {}
 
 	login(loginForms: FormGroup) {
 		console.log('Welp' + loginForms.value.email);
-	}
-
-	getLoggedIn() {
-		return this.loggedIn;
-	}
-
-	getCurrentUser() {
-		return this.currentUser;
+		this.http.post('', loginForms).subscribe({
+			next: nexts => {
+				console.log(nexts);
+			},
+			complete: () => {},
+			error: err => {},
+		});
 	}
 }

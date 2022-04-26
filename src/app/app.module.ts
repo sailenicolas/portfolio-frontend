@@ -22,7 +22,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatButtonModule } from '@angular/material/button';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import { HttpclientService } from './services/httpclient.service';
+import { HttpclientInterceptor } from './interceptors/httpclient.interceptor';
 
 @NgModule({
 	declarations: [
@@ -54,7 +54,7 @@ import { HttpclientService } from './services/httpclient.service';
 		AuthGuard,
 		{
 			provide: HTTP_INTERCEPTORS,
-			useClass: HttpclientService,
+			useClass: HttpclientInterceptor,
 		},
 	],
 	bootstrap: [AppComponent],
