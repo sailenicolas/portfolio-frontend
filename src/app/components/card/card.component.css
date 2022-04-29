@@ -1,0 +1,21 @@
+.container-flexbox {
+	display: flex;
+	align-content: center;
+	align-items: end;
+}
+
+.container-flexbox .container-child {
+	margin-left: 1em;
+}
+
+.mat-card-image {
+	margin-left: 0px !important;
+}
+
+.mat-card.mat-focus-indicator {
+	padding: 0px;
+}
+
+.text-center {
+	text-align: center;
+}

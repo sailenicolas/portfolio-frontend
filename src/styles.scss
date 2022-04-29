@@ -1,4 +1,38 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html, body {
+	height: 100%;
+}
+
+body {
+	margin: 0;
+	font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+@import "node_modules/bulma/bulma.sass";
+.mmt-6 {
+	@include mobile {
+		margin-top: -3rem;
+	}
+	@include desktop {
+		margin-top: -7rem;
+	}
+}
+
+.mt-mobile-6 {
+	@include mobile {
+		margin-top: 3rem;
+	}
+}
+
+.card-image-header .mat-card-image {
+	@include mobile {
+		height: 15rem;
+	}
+}
+
+.p-mobile-0 {
+	@include mobile {
+		padding: 0px 1em !important;
+	}
+}

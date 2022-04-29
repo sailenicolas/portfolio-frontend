@@ -1,6 +1,7 @@
 <div>
-	<app-nav></app-nav>
+	<app-nav [title]="title"></app-nav>
 	<main>
 		<router-outlet></router-outlet>
 	</main>
+	<app-footer [title]="title"></app-footer>
 </div>

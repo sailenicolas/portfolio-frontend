@@ -2,6 +2,6 @@ import { CurrentUser } from './currentuser';
 
 describe('Currentuser', () => {
 	it('should create an instance', () => {
-		expect(new CurrentUser({}, '', '', false)).toBeTruthy();
+		expect(new CurrentUser()).toBeTruthy();
 	});
 });

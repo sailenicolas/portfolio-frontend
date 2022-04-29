@@ -12,25 +12,16 @@
 			<button mat-menu-item>Item 2</button>
 		</mat-menu>
 		<a routerLink="/" mat-button
-			><span>{{ title }}</span></a
-		>
+		><span>{{ title }}</span></a>
 		<span class="example-spacer"></span>
-		<a
-			mat-button
-			class="example-icon favorite-icon"
-			aria-label="Example icon-button with heart icon">
+		<a mat-button class="favorite-icon" aria-label="Example icon-button with heart icon">
 			<mat-icon>favorite</mat-icon>
 		</a>
-		<a
-			mat-button
-			class="example-icon"
-			aria-label="Example icon-button with share icon">
+		<a mat-button aria-label="Example icon-button with share icon">
 			<mat-icon>share</mat-icon>
 		</a>
-		<div *ngIf="user; else showLogin" class="buttons">
-			<a mat-button (click)="logout($event)" class="button is-white"
-				>Logout</a
-			>
+		<div *ngIf="auth.isAuthenticated(); else showLogin">
+			<a mat-button (click)="this.auth.logout($event)">Logout</a>
 		</div>
 		<ng-template #showLogin>
 			<div class="buttons">
