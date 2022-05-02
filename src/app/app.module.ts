@@ -12,15 +12,7 @@ import { CardComponent } from './components/card/card.component';
 import { PortfolioComponent } from './components/portfolio/portfolio.component';
 import { HeaderComponent } from './components/shared/header/header.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatIconModule } from '@angular/material/icon';
-import { MatMenuModule } from '@angular/material/menu';
-import { MatInputModule } from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatGridListModule } from '@angular/material/grid-list';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { MatButtonModule } from '@angular/material/button';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { HttpclientInterceptor } from './interceptors/httpclient.interceptor';
 import { AuthService } from './services/auth.service';
@@ -31,7 +23,10 @@ import { MatCardModule } from '@angular/material/card';
 import { DashComponent } from './components/dash/dash.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { FooterComponent } from './components/shared/footer/footer.component';
-import { ExperienciesComponent } from './components/experiencies/experiencies.component';
+import { ListComponent } from './components/list/list.component';
+import { MaterialAppModule } from './modules/materialapp/material-app.module';
+import { SoftskillsComponent } from './components/softskills/softskills.component';
+import { ProjectsComponent } from './components/projects/projects.component';
 
 @NgModule({
 	declarations: [
@@ -44,22 +39,17 @@ import { ExperienciesComponent } from './components/experiencies/experiencies.co
 		HeaderComponent,
 		DashComponent,
 		FooterComponent,
-  ExperienciesComponent,
+		ListComponent,
+  SoftskillsComponent,
+  ProjectsComponent,
 	],
 	imports: [
 		BrowserModule,
 		AppRoutingModule,
 		BrowserAnimationsModule,
-		MatToolbarModule,
-		MatIconModule,
-		MatMenuModule,
-		MatInputModule,
 		ReactiveFormsModule,
-		MatSidenavModule,
-		MatGridListModule,
-		MatProgressSpinnerModule,
-		MatButtonModule,
 		FormsModule,
+		MaterialAppModule,
 		HttpClientModule,
 		JwtModule.forRoot({
 			config: {

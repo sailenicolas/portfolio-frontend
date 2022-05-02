@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { CurrentUser } from '../../class/currentuser';
 import { Router } from '@angular/router';
+import { HttpErrorResponse } from '@angular/common/http';
 
 export interface FormsLogin {
 	email: string;
@@ -24,14 +25,8 @@ export class LoginComponent implements AfterViewChecked {
 	) {}
 
 	loginForms: FormGroup = new FormGroup({
-		password: new FormControl('', [
-			Validators.required,
-			Validators.minLength(4),
-		]),
-		username: new FormControl('', [
-			Validators.required,
-			Validators.minLength(5),
-		]),
+		password: new FormControl('', [Validators.required, Validators.minLength(4)]),
+		username: new FormControl('', [Validators.required, Validators.minLength(5)]),
 	});
 	hideSpinner: boolean = false;
 
@@ -39,22 +34,21 @@ export class LoginComponent implements AfterViewChecked {
 		if (this.loginForms.valid) {
 			this.hideSpinner = true;
 			this.auth.login(this.loginForms.value).subscribe({
-				next: nexts => {
-					this.currentUser.refresh_token = nexts.refresh_token;
-					this.currentUser.access_token = nexts.access_token;
-					this.currentUser.expires_at = nexts.expires_at;
+				next: (current: CurrentUser) => {
+					this.currentUser.refresh_token = current.refresh_token;
+					this.currentUser.access_token = current.access_token;
+					this.currentUser.expires_at = current.expires_at;
 					if (this.auth.isAuthenticated()) {
-						this.router
-							.navigate(['/users'])
-							.then(r => console.log(r));
+						this.router.navigate(['/users']).then(r => console.log(r));
 					}
 				},
-				error: err => {
-					console.log(err.getMessage());
+				error: (err: HttpErrorResponse) => {
+					console.log(err.statusText);
 					this.hideSpinner = false;
 				},
 				complete: () => {
 					this.hideSpinner = false;
+					console.log(this.hideSpinner);
 				},
 			});
 		}

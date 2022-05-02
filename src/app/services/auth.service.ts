@@ -40,9 +40,11 @@ export class AuthService {
 	}
 
 	public isAuthenticated(): boolean {
-		if (this.jwtHelper.isTokenExpired(this.currentUser.access_token)) {
-			this.tokenExpiredHandler();
-			return false;
+		if (environment.production) {
+			if (this.jwtHelper.isTokenExpired(this.currentUser.access_token)) {
+				this.tokenExpiredHandler();
+				return false;
+			}
 		}
 		return true;
 	}
