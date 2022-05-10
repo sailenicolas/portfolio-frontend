@@ -6,7 +6,6 @@ import { AppComponent } from './app.component';
 
 import { NavComponent } from './components/shared/nav/nav.component';
 import { LoginComponent } from './components/login/login.component';
-import { UserComponent } from './components/user/user.component';
 import { AuthGuard } from './guards/auth.guard';
 import { CardComponent } from './components/card/card.component';
 import { PortfolioComponent } from './components/portfolio/portfolio.component';
@@ -23,25 +22,27 @@ import { MatCardModule } from '@angular/material/card';
 import { DashComponent } from './components/dash/dash.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { FooterComponent } from './components/shared/footer/footer.component';
-import { ListComponent } from './components/list/list.component';
+import { ListComponent } from './components/shared/list/list.component';
 import { MaterialAppModule } from './modules/materialapp/material-app.module';
 import { SoftskillsComponent } from './components/softskills/softskills.component';
 import { ProjectsComponent } from './components/projects/projects.component';
+import { ProgressComponent } from './components/shared/progress/progress.component';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 
 @NgModule({
 	declarations: [
 		AppComponent,
 		NavComponent,
 		LoginComponent,
-		UserComponent,
 		CardComponent,
 		PortfolioComponent,
 		HeaderComponent,
 		DashComponent,
 		FooterComponent,
 		ListComponent,
-  SoftskillsComponent,
-  ProjectsComponent,
+		SoftskillsComponent,
+		ProjectsComponent,
+		ProgressComponent,
 	],
 	imports: [
 		BrowserModule,
@@ -65,6 +66,7 @@ import { ProjectsComponent } from './components/projects/projects.component';
 		}),
 		MatCardModule,
 		LayoutModule,
+		MatButtonToggleModule,
 	],
 	providers: [
 		{

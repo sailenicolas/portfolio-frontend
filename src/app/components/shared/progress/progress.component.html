@@ -1,0 +1,26 @@
+<div class="flex items-center justify-center">
+	<svg class="transform -rotate-90 w-32 h-32 min-w-[120px] min-h-[120px]">
+		<circle
+			cx="60"
+			cy="60"
+			[attr.r]="radius"
+			stroke="currentColor"
+			stroke-width="12"
+			fill="transparent"
+			class="text-amber-100"
+		/>
+
+		<circle
+			[style.strokeDasharray]="circumference"
+			[style.strokeDashoffset]="dashoffset"
+			[attr.r]="radius"
+			cx="60"
+			cy="60"
+			stroke-width="12"
+			stroke="currentColor"
+			fill="transparent"
+			class="text-green-900 progress__value"
+		/>
+	</svg>
+	<span class="absolute text-2xl">{{value.toFixed(0)}}%</span>
+</div>

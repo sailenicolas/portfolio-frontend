@@ -3,11 +3,9 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { PortfolioComponent } from './components/portfolio/portfolio.component';
 import { LoginComponent } from './components/login/login.component';
-import { UserComponent } from './components/user/user.component';
 
 import { UnauthGuard } from './guards/unauth.guard';
 import { AuthGuard } from './guards/auth.guard';
-import { DashComponent } from './components/dash/dash.component';
 
 const routes: Routes = [
 	{ path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -18,17 +16,11 @@ const routes: Routes = [
 		canActivate: [UnauthGuard],
 	},
 	{
-		path: 'users',
-		component: UserComponent,
+		path: 'portfolio',
+		component: PortfolioComponent,
 		canLoad: [AuthGuard],
 		canActivate: [AuthGuard],
 	},
-	{
-		path: 'dash',
-		component: DashComponent,
-		canLoad: [AuthGuard],
-	},
-	{ path: 'portfolio', component: PortfolioComponent },
 ];
 
 @NgModule({
