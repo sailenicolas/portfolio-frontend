@@ -1,0 +1,50 @@
+<h1 mat-dialog-title>Agregar un nuevo elemento</h1>
+<div mat-dialog-content>
+	<mat-form-field appearance="fill">
+		<mat-label>Cargo</mat-label>
+		<input matInput type="date" [(ngModel)]="data.cargo" />
+	</mat-form-field>
+	<p>Cargo</p>
+	<mat-form-field appearance="fill">
+		<mat-label>Cargo</mat-label>
+		<input matInput [(ngModel)]="data.cargo" />
+	</mat-form-field>
+	<p>Tipo de empleo</p>
+	<mat-form-field appearance="fill">
+		<mat-label>Selecciona una opción</mat-label>
+		<mat-select>
+			<mat-option value="Jornada completa">Jornada completa</mat-option>
+			<mat-option value="Jornada parcial">Jornada parcial</mat-option>
+			<mat-option value="Autónomo">Autónomo</mat-option>
+			<mat-option value="Profesional independiente">Profesional independiente</mat-option>
+			<mat-option value="Contrato temporal">Contrato temporal</mat-option>
+			<mat-option value="Contrato de prácticas">Contrato de prácticas</mat-option>
+			<mat-option value="Contrato de formación">Contrato de formación</mat-option>
+			<mat-option value="Seasonal">Seasonal</mat-option>
+		</mat-select>
+	</mat-form-field>
+	<p>Nombre de la empresa</p>
+	<mat-form-field>
+		<mat-label>Nombre de la empresa</mat-label>
+		<input matInput class="border border-amber-900" [(ngModel)]="data.empresa" />
+	</mat-form-field>
+	<p>Ubicación</p>
+	<mat-form-field appearance="fill">
+		<mat-label>Ubicación</mat-label>
+		<input matInput [(ngModel)]="data.ubicacion" />
+	</mat-form-field>
+	<p>Fecha de inicio</p>
+	<mat-form-field appearance="fill">
+		<mat-label>Month and Year</mat-label>
+		<input matInput [formControl]="date" />
+	</mat-form-field>
+	<p>Fecha de finalización</p>
+	<mat-form-field appearance="fill">
+		<mat-label>Fecha de inicio</mat-label>
+		<input matInput [(ngModel)]="data.fin" />
+	</mat-form-field>
+</div>
+<div mat-dialog-actions>
+	<button mat-button>No Thanks</button>
+	<button mat-button [mat-dialog-close]="data">Ok</button>
+</div>

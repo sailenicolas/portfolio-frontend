@@ -7,6 +7,9 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatButtonModule } from '@angular/material/button';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatCardModule } from '@angular/material/card';
+import { MatDialogModule } from '@angular/material/dialog';
 
 const modulesToExport: any[] = [
 	MatToolbarModule,
@@ -17,6 +20,9 @@ const modulesToExport: any[] = [
 	MatGridListModule,
 	MatProgressSpinnerModule,
 	MatButtonModule,
+	MatButtonToggleModule,
+	MatCardModule,
+	MatDialogModule,
 ];
 
 @NgModule({

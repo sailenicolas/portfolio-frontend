@@ -1,0 +1,61 @@
+<div class="container py-6 mx-auto portfolio">
+	<div class="grid gap-6 grid-cols-12">
+		<div class="md:col-span-4"></div>
+		<div class="col-span-full md:col-span-5">
+			<h1>Editar un elemento</h1>
+			<form class="">
+				<div fxLayout="row">
+					<p>Cargo</p>
+					<mat-form-field appearance="fill" fxFlex>
+						<mat-label>Cargo</mat-label>
+						<input matInput />
+					</mat-form-field>
+					<p>Tipo de empleo</p>
+					<mat-form-field appearance="fill" fxFlexFill>
+						<mat-label>Selecciona una opción</mat-label>
+						<mat-select>
+							<mat-option value="Jornada completa">Jornada completa</mat-option>
+							<mat-option value="Jornada parcial">Jornada parcial</mat-option>
+							<mat-option value="Autónomo">Autónomo</mat-option>
+							<mat-option value="Profesional independiente"
+								>Profesional independiente
+							</mat-option>
+							<mat-option value="Contrato temporal">Contrato temporal</mat-option>
+							<mat-option value="Contrato de prácticas"
+								>Contrato de prácticas
+							</mat-option>
+							<mat-option value="Contrato de formación"
+								>Contrato de formación
+							</mat-option>
+							<mat-option value="Seasonal">Seasonal</mat-option>
+						</mat-select>
+					</mat-form-field>
+					<p>Nombre de la empresa</p>
+					<mat-form-field appearance="fill" fxFlexFill>
+						<mat-label>Nombre de la empresa</mat-label>
+						<input matInput class="border border-amber-900" />
+					</mat-form-field>
+					<p>Ubicación</p>
+					<mat-form-field appearance="fill" fxFlexFill>
+						<mat-label>Ubicación</mat-label>
+						<input matInput />
+					</mat-form-field>
+					<p>Fecha de inicio</p>
+					<mat-form-field appearance="fill" fxFlexFill>
+						<mat-label>Month and Year</mat-label>
+						<input matInput type="date" />
+					</mat-form-field>
+					<p>Fecha de finalización</p>
+					<mat-form-field appearance="fill">
+						<mat-label>Fecha de inicio</mat-label>
+						<input matInput />
+					</mat-form-field>
+				</div>
+				<div>
+					<button mat-button>No Thanks</button>
+					<button mat-button>Ok</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>

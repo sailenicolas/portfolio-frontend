@@ -21,13 +21,9 @@ export class UnauthGuard implements CanActivate, CanLoad {
 	canActivate(
 		route: ActivatedRouteSnapshot,
 		state: RouterStateSnapshot
-	):
-		| Observable<boolean | UrlTree>
-		| Promise<boolean | UrlTree>
-		| boolean
-		| UrlTree {
+	): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
 		if (this.auth.isAuthenticated()) {
-			this.router.navigate(['/users']).then(r => {
+			this.router.navigate(['/portfolio']).then(r => {
 				console.log(r);
 			});
 			return false;

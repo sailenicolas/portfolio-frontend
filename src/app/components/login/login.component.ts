@@ -1,7 +1,7 @@
 import { AfterViewChecked, Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
-import { CurrentUser } from '../../class/currentuser';
+import { CurrentUser } from '../../models/currentuser';
 import { Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
 

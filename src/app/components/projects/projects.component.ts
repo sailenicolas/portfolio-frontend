@@ -1,15 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-projects',
-  templateUrl: './projects.component.html',
-  styleUrls: ['./projects.component.scss']
+	selector: 'app-projects',
+	templateUrl: './projects.component.html',
+	styleUrls: ['./projects.component.scss'],
 })
-export class ProjectsComponent implements OnInit {
+export class ProjectsComponent {
+	constructor() {}
 
-  constructor() { }
+	openAddDialog($event: MouseEvent) {
+		$event.preventDefault();
+		console.log('Ccalled from parent 23' + $event);
+	}
 
-  ngOnInit(): void {
-  }
-
+	openEditDialog($event: MouseEvent) {
+		$event.preventDefault();
+		console.log('Ccalled from parent 13' + $event.target);
+	}
 }

@@ -1,0 +1,3 @@
+.hero-head {
+	@apply flex flex-col
+}
