@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { CurrentUser } from '../models/currentuser';
+import { CurrentToken } from '../models/currentToken';
 import { LoginForm } from '../models/loginform';
 import { environment } from '../../environments/environment';
 import { JwtHelperService } from '@auth0/angular-jwt';
@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 })
 export class AuthService {
 	constructor(
-		public currentUser: CurrentUser,
+		public currentUser: CurrentToken,
 		private http: HttpClient,
 		public jwtHelper: JwtHelperService,
 		public router: Router
@@ -20,7 +20,7 @@ export class AuthService {
 
 	readonly API_VERSION = environment.apiVersion;
 
-	login(loginForms: LoginForm): Observable<CurrentUser> {
+	login(loginForms: LoginForm): Observable<CurrentToken> {
 		let options = {
 			headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded'),
 		};
@@ -32,7 +32,7 @@ export class AuthService {
 		});
 
 		console.log(loginForms.username);
-		return this.http.post<CurrentUser>(
+		return this.http.post<CurrentToken>(
 			'http://localhost:8080/' + this.API_VERSION + '/login',
 			params,
 			options

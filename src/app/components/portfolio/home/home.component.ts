@@ -14,16 +14,18 @@ export class HomeComponent implements OnInit {
 
 	constructor(private dataService: DataService) {
 		this.items = {
-			about_me: '',
-			image: '',
-			name: '',
+			about: {
+				about_me: '',
+				image: '',
+				name: '',
+			},
 			experiences: <Experiences[]>[],
 			education: <Education[]>[],
 		};
 	}
 
 	ngOnInit(): void {
-		this.dataService.getItems().subscribe({
+		this.dataService.getPersonsData().subscribe({
 			next: value => {
 				this.items = value;
 			},

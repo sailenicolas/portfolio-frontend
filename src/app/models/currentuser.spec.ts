@@ -1,7 +1,7 @@
-import { CurrentUser } from './currentuser';
+import { CurrentToken } from './currentToken';
 
 describe('Currentuser', () => {
 	it('should create an instance', () => {
-		expect(new CurrentUser()).toBeTruthy();
+		expect(new CurrentToken()).toBeTruthy();
 	});
 });

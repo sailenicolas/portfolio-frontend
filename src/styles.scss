@@ -1,5 +1,52 @@
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@use '@angular/material' as mat;
+// Plus imports for other components in your app.
+@import 'sass/variables';
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat.core();
+
 @import "styles.css";
 
-mat-form-field {
-	width: 100%;
+html, body {
+	height: 100%;
+
+	mat-form-field {
+		width: 100%;
+	}
+
+	// Apply the dark theme by default
+	@include mat.core-theme($personsfrontJWT-theme-dark);
+	@include mat.button-theme($personsfrontJWT-theme-dark);
+	@include mat.form-field-theme($personsfrontJWT-theme-dark);
+	@include mat.icon-theme($personsfrontJWT-theme-dark);
+	@include mat.select-theme($personsfrontJWT-theme-dark);
+	@include mat.input-theme($personsfrontJWT-theme-dark);
+	@include mat.toolbar-theme($personsfrontJWT-theme-dark);
+	@include mat.menu-theme($personsfrontJWT-theme-dark);
+	@include mat.option-color($personsfrontJWT-theme-dark);
+
+	.light-theme-body {
+		// Apply the dark theme by default
+		@include mat.core-color($personsfrontJWT-theme-light);
+		@include mat.button-color($personsfrontJWT-theme-light);
+		@include mat.form-field-color($personsfrontJWT-theme-light);
+		@include mat.icon-color($personsfrontJWT-theme-light);
+		@include mat.select-color($personsfrontJWT-theme-light);
+		@include mat.input-color($personsfrontJWT-theme-light);
+		@include mat.toolbar-color($personsfrontJWT-theme-light);
+		@include mat.menu-color($personsfrontJWT-theme-light);
+		@include mat.bottom-sheet-theme($personsfrontJWT-theme-light);
+		@include mat.option-color($personsfrontJWT-theme-light);
+	}
+
+	body {
+		margin: 0;
+		font-family: Roboto, "Helvetica Neue", sans-serif;
+	}
 }
+
+

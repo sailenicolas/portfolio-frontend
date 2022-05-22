@@ -1,10 +1,10 @@
 export interface Education {
 	id: number;
-	lugar: string;
+	institucion: string;
 	titulo: string;
 	imagen: string;
-	career: string;
+	carrera: string;
 	puntaje: number;
-	inicio: number;
-	fin: number;
+	inicio: string;
+	fin: string;
 }

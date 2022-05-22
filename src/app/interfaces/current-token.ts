@@ -1,5 +1,5 @@
-export interface CurrentUser {
-	get current_user(): Object;
+export interface CurrentToken {
+	get current_token(): Object;
 
 	get logged_in(): boolean;
 

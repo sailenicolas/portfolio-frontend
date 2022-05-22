@@ -1,8 +1,8 @@
-import { CurrentUser as CU } from '../interfaces/currentuser';
+import { CurrentToken as CU } from '../interfaces/current-token';
 import { JwtHelperService } from '@auth0/angular-jwt';
 
-export class CurrentUser implements CU {
-	get current_user(): Object {
+export class CurrentToken implements CU {
+	get current_token(): Object {
 		return {
 			refresh_token: this.refresh_token,
 			access_token: this.access_token,

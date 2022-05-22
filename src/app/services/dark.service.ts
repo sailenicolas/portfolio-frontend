@@ -25,8 +25,10 @@ export class DarkService {
 	private toggleclass(item: boolean) {
 		if (item) {
 			document.getElementsByTagName('html').item(0)?.classList.add('dark');
+			document.getElementsByTagName('body').item(0)?.classList.remove('light-theme-body');
 		} else {
 			document.getElementsByTagName('html').item(0)?.classList.remove('dark');
+			document.getElementsByTagName('body').item(0)?.classList.add('light-theme-body');
 		}
 	}
 }

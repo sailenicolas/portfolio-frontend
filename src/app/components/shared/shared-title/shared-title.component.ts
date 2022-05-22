@@ -7,17 +7,24 @@ import { Component, Input } from '@angular/core';
 })
 export class SharedTitleComponent {
 	@Input('title')
-	title!: string;
+	title: string;
 	@Input()
-	add: string = 'true';
+	add: boolean = false;
 	@Input()
-	delete: string = 'false';
-	@Input('id')
-	id!: number;
+	delete: boolean = false;
+	@Input('ids')
+	ids: number | undefined;
+	@Input('listType')
+	listType: string;
+	@Input('edit')
+	edit: boolean = false;
 
 	mb() {
-		return this.add === 'false' ? '0px' : false;
+		return !this.add ? '0px' : false;
 	}
 
-	constructor() {}
+	constructor() {
+		this.listType = '';
+		this.title = '';
+	}
 }
