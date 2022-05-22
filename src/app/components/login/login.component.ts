@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
-import { CurrentToken } from '../../models/currentToken';
+import { CurrentToken } from '../../models/current-token';
 import { Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
 

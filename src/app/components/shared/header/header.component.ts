@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { AboutMe } from '../../../interfaces/about-me';
 
 @Component({
 	selector: 'shared-header',
@@ -6,5 +7,8 @@ import { Component } from '@angular/core';
 	styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent {
+	@Input('about')
+	about!: AboutMe;
+
 	constructor() {}
 }

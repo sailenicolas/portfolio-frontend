@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { CurrentToken } from '../models/currentToken';
-import { LoginForm } from '../models/loginform';
+import { CurrentToken } from '../models/current-token';
+import { LoginForm } from '../models/login-form';
 import { environment } from '../../environments/environment';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Observable } from 'rxjs';

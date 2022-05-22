@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterHelpService } from '../../../services/router-help.service';
 import { ActivatedRoute } from '@angular/router';
+import { FormGroup } from '@angular/forms';
+import { FormHelperService } from '../../../services/form-helper.service';
 
 @Component({
 	selector: 'app-portfolio-add-form',
@@ -11,10 +13,16 @@ export class PortfolioAddForm implements OnInit {
 	data: any;
 	experiences: boolean;
 	education: boolean;
+	formGroup: FormGroup;
 
-	constructor(public routerService: RouterHelpService, private router: ActivatedRoute) {
+	constructor(
+		public routerService: RouterHelpService,
+		private router: ActivatedRoute,
+		private formHelperService: FormHelperService
+	) {
 		this.experiences = false;
 		this.education = false;
+		this.formGroup = new FormGroup({});
 	}
 
 	ngOnInit(): void {
@@ -28,5 +36,15 @@ export class PortfolioAddForm implements OnInit {
 				this.experiences = item;
 			},
 		});
+		this.formHelperService.setControls(this.formGroup, null, {
+			education: this.education,
+			experiences: this.experiences,
+		});
+	}
+
+	onClickSubmit($event: MouseEvent) {}
+
+	checkError(formControlName: string, errorName: string) {
+		return this.formHelperService.checkError(this.formGroup, formControlName, errorName);
 	}
 }

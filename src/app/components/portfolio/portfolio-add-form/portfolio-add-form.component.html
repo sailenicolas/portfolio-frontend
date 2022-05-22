@@ -3,15 +3,19 @@
 		<div class="md:col-span-4"></div>
 		<div class="col-span-full md:col-span-5">
 			<h1>Agregar un elemento</h1>
-			<form class="">
+			<form class="" [formGroup]="formGroup" (ngSubmit)="onClickSubmit($event)">
 				<div>
 					<div *ngIf="this.experiences">
-						<p>Cargo</p>
 						<mat-form-field appearance="fill">
 							<mat-label>Cargo</mat-label>
-							<input matInput />
+							<input matInput formControlName="cargo" />
+							<mat-error *ngIf="checkError('cargo', 'required')"
+								>Cargo es requerido
+							</mat-error>
+							<mat-error *ngIf="checkError('cargo', 'minlength')"
+								>Cargo deberia ser mayor a 4 caracteres
+							</mat-error>
 						</mat-form-field>
-						<p>Tipo de empleo</p>
 						<mat-form-field appearance="fill">
 							<mat-label>Selecciona una opción</mat-label>
 							<mat-select formControlName="tipoDeEmpleo">
@@ -30,45 +34,90 @@
 						<p>Nombre de la empresa</p>
 						<mat-form-field appearance="fill">
 							<mat-label>Nombre de la empresa</mat-label>
-							<input matInput class="border border-amber-900" />
+							<input matInput formControlName="empresa" />
+							<mat-error *ngIf="checkError('empresa', 'required')"
+								>Nombre de la empresa es requerido
+							</mat-error>
+							<mat-error *ngIf="checkError('empresa', 'minlength')"
+								>Nombre de la empresa deberia ser mayor a 4 caracteres
+							</mat-error>
 						</mat-form-field>
 						<p>Ubicación</p>
 						<mat-form-field appearance="fill">
 							<mat-label>Ubicación</mat-label>
-							<input matInput />
+							<input matInput formControlName="ubicacion" />
+							<mat-error *ngIf="checkError('ubicacion', 'required')"
+								>Nombre de la empresa es requerido
+							</mat-error>
+							<mat-error *ngIf="checkError('ubicacion', 'minlength')"
+								>Nombre de la empresa deberia ser mayor a 4 caracteres
+							</mat-error>
 						</mat-form-field>
 					</div>
 					<div *ngIf="this.education">
 						<p>Nombre de la institucion</p>
 						<mat-form-field appearance="fill">
 							<mat-label>Nombre de la institucion</mat-label>
-							<input matInput />
+							<input matInput formControlName="institucion" />
+							<mat-error *ngIf="checkError('institucion', 'required')"
+								>Nombre de la empresa es requerido
+							</mat-error>
+							<mat-error *ngIf="checkError('institucion', 'minlength')"
+								>Nombre de la empresa deberia ser mayor a 4 caracteres
+							</mat-error>
 						</mat-form-field>
 						<p>Titulo</p>
 						<mat-form-field appearance="fill">
 							<mat-label>Titulo</mat-label>
-							<input matInput />
+							<input matInput formControlName="titulo" />
+							<mat-error *ngIf="checkError('titulo', 'required')"
+								>Titulo es requerido
+							</mat-error>
+							<mat-error *ngIf="checkError('titulo', 'minlength')"
+								>Titulo deberia ser mayor a 4 caracteres
+							</mat-error>
 						</mat-form-field>
 						<p>Nombre de la carrera</p>
 						<mat-form-field appearance="fill">
 							<mat-label>Nombre de la carrera</mat-label>
-							<input matInput />
+							<input matInput formControlName="carrera" />
+							<mat-error *ngIf="checkError('carrera', 'required')"
+								>Nombre de la carrera es requerido
+							</mat-error>
+							<mat-error *ngIf="checkError('carrera', 'minlength')"
+								>Nombre de la carrera deberia ser mayor a 4 caracteres
+							</mat-error>
 						</mat-form-field>
 						<p>Puntaje obtenido</p>
 						<mat-form-field appearance="fill">
 							<mat-label>Puntaje obtenido</mat-label>
-							<input matInput />
+							<input matInput formControlName="puntaje" />
+							<mat-error *ngIf="checkError('puntaje', 'required')"
+								>Puntaje obtenido es requerido
+							</mat-error>
+							<mat-error *ngIf="checkError('puntaje', 'minlength')"
+								>Puntaje obtenido deberia ser mayor a 4 caracteres
+							</mat-error>
 						</mat-form-field>
 					</div>
 					<p>Fecha de inicio</p>
 					<mat-form-field appearance="fill">
-						<mat-label>Month and Year</mat-label>
-						<input matInput type="date" />
+						<mat-label>Fecha de inicio</mat-label>
+						<input matInput type="date" formControlName="inicio" />
+						<mat-error *ngIf="checkError('inicio', 'required')"
+							>Fecha de inicio es requerido
+						</mat-error>
+						<mat-error *ngIf="checkError('inicio', 'minlength')"
+							>Fecha de inicio deberia ser mayor a 4 caracteres
+						</mat-error>
 					</mat-form-field>
 					<p>Fecha de finalización</p>
 					<mat-form-field appearance="fill">
-						<mat-label>Fecha de inicio</mat-label>
-						<input matInput />
+						<mat-label>Fecha de finalización</mat-label>
+						<input matInput type="date" formControlName="fin" />
+						<mat-error *ngIf="checkError('fin', 'minlength')"
+							>Fecha de inicio deberia ser mayor a 4 caracteres
+						</mat-error>
 					</mat-form-field>
 				</div>
 				<div>

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterHelpService } from '../../../services/router-help.service';
 import { ActivatedRoute, ParamMap } from '@angular/router';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 import { FormHelperService } from '../../../services/form-helper.service';
 import { DataService } from '../../../services/data.service';
 import { Experiences } from '../../../interfaces/experiences';
@@ -51,26 +51,18 @@ export class PortfolioEditForm implements OnInit {
 			this.education,
 			this.experiences
 		);
-		const controls = this.formHelperService.getControls(this.education, this.experiences);
-		const personData = this.personData;
-		type ObjectKey = keyof typeof personData;
-		this.formGroup.addControl(
-			'inicio',
-			new FormControl(personData?.inicio, [Validators.required, Validators.minLength(4)])
-		);
-		this.formGroup.addControl(
-			'fin',
-			new FormControl(personData?.fin, [Validators.required, Validators.minLength(4)])
-		);
-		for (let controlsKey of controls) {
-			let myVar = controlsKey.name as ObjectKey;
-			controlsKey.formC.setValue(this.personData?.[myVar]);
-			this.formGroup.addControl(controlsKey.name, controlsKey.formC);
-		}
+		this.formHelperService.setControls(this.formGroup, this.personData, {
+			education: this.education,
+			experiences: this.experiences,
+		});
 	}
 
 	onClickSubmit($event: MouseEvent) {
 		console.log('is not gonna work');
 		console.log(this.formGroup.valid, this.formGroup.controls['cargo'].errors?.['required']);
+	}
+
+	checkError(formControlName: string, errorName: string) {
+		return this.formHelperService.checkError(this.formGroup, formControlName, errorName);
 	}
 }

@@ -14,7 +14,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { HttpclientInterceptor } from './interceptors/httpclient.interceptor';
 import { AuthService } from './services/auth.service';
-import { CurrentToken } from './models/currentToken';
+import { CurrentToken } from './models/current-token';
 import { UnauthGuard } from './guards/unauth.guard';
 import { JwtModule } from '@auth0/angular-jwt';
 import { DashComponent } from './components/dash/dash.component';
