@@ -21,7 +21,7 @@ import { DashComponent } from './components/dash/dash.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { FooterComponent } from './components/shared/footer/footer.component';
 import { MaterialAppModule } from './modules/materialapp/material-app.module';
-import { SoftskillsComponent } from './components/soft-skills/softskills.component';
+import { SoftSkillsComponent } from './components/soft-skills/soft-skills.component';
 import { ProjectsComponent } from './components/projects/projects.component';
 import { ProgressComponent } from './components/shared/progress/progress.component';
 import { PortfolioEditForm } from './components/portfolio/portfolio-edit-form/portfolio-edit-form.component';
@@ -43,7 +43,7 @@ import { ListExperienciesComponent } from './components/list-experiencies/list-e
 		HeaderComponent,
 		DashComponent,
 		FooterComponent,
-		SoftskillsComponent,
+		SoftSkillsComponent,
 		ProjectsComponent,
 		ProgressComponent,
 		PortfolioEditForm,

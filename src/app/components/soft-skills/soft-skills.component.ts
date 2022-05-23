@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
 	selector: 'app-soft-skills',
-	templateUrl: './softskills.component.html',
-	styleUrls: ['./softskills.component.scss'],
+	templateUrl: './soft-skills.component.html',
+	styleUrls: ['./soft-skills.component.scss'],
 })
-export class SoftskillsComponent implements OnInit {
+export class SoftSkillsComponent implements OnInit {
 	constructor() {}
 
 	ngOnInit(): void {}
