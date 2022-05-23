@@ -2,9 +2,9 @@
 	<div class="flex-initial flex-shrink-0 w-full">
 		<img
 			mat-card-image
-			src="../../../assets/images/No-Branding-Header-Background-1.jpg"
+			src="assets/images/No-Branding-Header-Background-1.jpg"
 			alt="Photo of a Shiba Inu"
-			style="margin-left: 0px !important" />
+			style="margin-left: 0 !important" />
 	</div>
 	<div class="flex-initial self-end relative w-[26px] h-[26px] bg-blue-600 rounded-full bottom-3">
 		<mat-icon>edit</mat-icon>
@@ -18,7 +18,8 @@
 					<img
 						class="rounded-full w-[128px] h-[128px]"
 						style="border: solid 1px greenyellow"
-						src="https://bulma.io/images/placeholders/256x256.png" />
+						[src]="about.image.length > 0 ? about.image : 'assets/images/128.png'"
+						alt="" />
 				</div>
 				<div
 					class="flex-initial flex-shrink-0 self-end w-[26px] h-[26px] relative left-3 bg-blue-600 rounded-full">
@@ -27,7 +28,7 @@
 			</div>
 		</div>
 		<div class="col-auto self-end">
-			<app-shared-title title="Name" [add]="false"></app-shared-title>
+			<app-shared-title [title]="about.name"></app-shared-title>
 			<p>@name</p>
 		</div>
 	</div>

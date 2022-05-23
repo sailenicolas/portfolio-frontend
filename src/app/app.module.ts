@@ -21,7 +21,7 @@ import { DashComponent } from './components/dash/dash.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { FooterComponent } from './components/shared/footer/footer.component';
 import { MaterialAppModule } from './modules/materialapp/material-app.module';
-import { SoftskillsComponent } from './components/softskills/softskills.component';
+import { SoftskillsComponent } from './components/soft-skills/softskills.component';
 import { ProjectsComponent } from './components/projects/projects.component';
 import { ProgressComponent } from './components/shared/progress/progress.component';
 import { PortfolioEditForm } from './components/portfolio/portfolio-edit-form/portfolio-edit-form.component';

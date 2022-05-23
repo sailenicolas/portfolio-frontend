@@ -37,7 +37,7 @@ export class FormHelperService {
 					formC: new FormControl('', [Validators.minLength(4)]),
 				},
 			],
-			experiences: [
+			experience: [
 				{
 					name: 'tipoDeEmpleo',
 					formC: new FormControl('', [Validators.required, Validators.minLength(4)]),
@@ -65,16 +65,16 @@ export class FormHelperService {
 			],
 		};
 		if (education) return controls.education;
-		else if (experience) return controls.experiences;
+		else if (experience) return controls.experience;
 		return [];
 	}
 
 	setControls(
 		formGroup: FormGroup,
 		personData: Experiences | Education | null,
-		flags: { education: boolean; experiences: boolean }
+		flags: { education: boolean; experience: boolean; about: boolean }
 	) {
-		const controls = this.getControls(flags.education, flags.experiences);
+		const controls = this.getControls(flags.education, flags.experience);
 		type ObjectKey = keyof typeof personData;
 		for (let controlsKey of controls) {
 			if (personData != null) {

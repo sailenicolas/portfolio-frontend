@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-	selector: 'app-softskills',
+	selector: 'app-soft-skills',
 	templateUrl: './softskills.component.html',
 	styleUrls: ['./softskills.component.scss'],
 })

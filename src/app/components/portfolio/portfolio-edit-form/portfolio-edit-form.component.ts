@@ -6,6 +6,7 @@ import { FormHelperService } from '../../../services/form-helper.service';
 import { DataService } from '../../../services/data.service';
 import { Experiences } from '../../../interfaces/experiences';
 import { Education } from '../../../interfaces/education';
+import { TipoDeEmpleo } from '../../../enums/tipo-de-empleo';
 
 @Component({
 	selector: 'app-portfolio-edit-form',
@@ -13,11 +14,20 @@ import { Education } from '../../../interfaces/education';
 	styleUrls: ['./portfolio-edit-form.component.scss'],
 })
 export class PortfolioEditForm implements OnInit {
-	education: boolean;
-	experiences: boolean;
+	experiences: {
+		experience: boolean;
+		education: boolean;
+		about: boolean;
+	} = {
+		experience: false,
+		education: false,
+		about: false,
+	};
 	formGroup: FormGroup;
 	private id: number = -1;
 	private personData: Experiences | Education | null = null;
+	Typed: string;
+	dd = TipoDeEmpleo;
 
 	constructor(
 		public routerService: RouterHelpService,
@@ -25,8 +35,17 @@ export class PortfolioEditForm implements OnInit {
 		private formHelperService: FormHelperService,
 		private dataService: DataService
 	) {
-		this.experiences = false;
-		this.education = false;
+		this.Typed = 'Editar';
+		this.routerService
+			.compareArray(['education', 'experiences', 'about'], this.router)
+			.subscribe({
+				next: ({ name, result }) => {
+					let expt = this.experiences;
+					type am = keyof typeof expt;
+					let myVar = name as am;
+					this.experiences[myVar] = result;
+				},
+			});
 		this.router.paramMap.subscribe({
 			next: (params: ParamMap) => {
 				this.id = Number(params.get('id'));
@@ -36,25 +55,8 @@ export class PortfolioEditForm implements OnInit {
 	}
 
 	ngOnInit(): void {
-		this.routerService.compare('education', this.router).subscribe({
-			next: item => {
-				this.education = item;
-			},
-		});
-		this.routerService.compare('experiences', this.router).subscribe({
-			next: item => {
-				this.experiences = item;
-			},
-		});
-		this.personData = this.dataService.findPersonData(
-			this.id,
-			this.education,
-			this.experiences
-		);
-		this.formHelperService.setControls(this.formGroup, this.personData, {
-			education: this.education,
-			experiences: this.experiences,
-		});
+		this.personData = this.dataService.findPersonData(this.id, this.experiences);
+		this.formHelperService.setControls(this.formGroup, this.personData, this.experiences);
 	}
 
 	onClickSubmit($event: MouseEvent) {

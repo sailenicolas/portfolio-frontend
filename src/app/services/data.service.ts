@@ -4,6 +4,7 @@ import { Education } from '../interfaces/education';
 import { Observable, of } from 'rxjs';
 import { Person } from '../interfaces/person';
 import { TipoDeEmpleo } from '../enums/tipo-de-empleo';
+import { AboutMe } from '../interfaces/about-me';
 
 @Injectable({
 	providedIn: 'root',
@@ -13,13 +14,12 @@ export class DataService {
 
 	findPersonData(
 		id: number,
-		education: boolean,
-		experience: boolean
+		flags: { education: boolean; experience: boolean; about: boolean }
 	): Experiences | Education | null {
-		if (education) {
+		if (flags.education) {
 			return this._value.education[id];
 		}
-		if (experience) {
+		if (flags.experience) {
 			return this._value.experiences[id];
 		}
 		return null;
@@ -27,15 +27,16 @@ export class DataService {
 
 	private readonly _value = {
 		about: {
-			about_me: '',
+			about_me:
+				'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi ducimus illo neque quae quas rerum tempora. Autem deserunt earum est ex inventore iusto labore magni odio quisquam ratione, sunt voluptas.',
 			image: '',
-			name: '',
+			name: 'Jhon',
 		},
 		experiences: <Experiences[]>[
 			{
 				id: 0,
 				ubicacion: 'Segui',
-				tipoDeEmpleo: TipoDeEmpleo.jornadaParcial,
+				tipoDeEmpleo: TipoDeEmpleo.seasonal,
 				inicio: '2017-06-01',
 				fin: '2017-06-05',
 				imagen: '',
@@ -79,5 +80,9 @@ export class DataService {
 
 	getPersonsData(): Observable<Person> {
 		return of(this._value);
+	}
+
+	fetchAboutMe(): AboutMe {
+		return this._value.about;
 	}
 }

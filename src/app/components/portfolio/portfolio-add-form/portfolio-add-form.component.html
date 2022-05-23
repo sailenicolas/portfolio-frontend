@@ -2,10 +2,10 @@
 	<div class="grid gap-6 grid-cols-12">
 		<div class="md:col-span-4"></div>
 		<div class="col-span-full md:col-span-5">
-			<h1>Agregar un elemento</h1>
+			<h1>{{ Typed }} un elemento</h1>
 			<form class="" [formGroup]="formGroup" (ngSubmit)="onClickSubmit($event)">
 				<div>
-					<div *ngIf="this.experiences">
+					<div *ngIf="this.experiences.experience">
 						<mat-form-field appearance="fill">
 							<mat-label>Cargo</mat-label>
 							<input matInput formControlName="cargo" />
@@ -18,18 +18,33 @@
 						</mat-form-field>
 						<mat-form-field appearance="fill">
 							<mat-label>Selecciona una opción</mat-label>
-							<mat-select formControlName="tipoDeEmpleo">
-								<mat-option value="jornadaCompleta">Jornada completa</mat-option>
-								<mat-option value="jornadaParcial">Jornada parcial</mat-option>
-								<mat-option value="autonomo">Autónomo</mat-option>
-								<mat-option value="independiente"
+							<mat-select formControlName="tipoDeEmpleo" [value]="0">
+								<mat-option [value]="dd.defaultValue">Selecciona uno</mat-option>
+								<mat-option [value]="dd.jornadaCompleta"
+									>Jornada completa
+								</mat-option>
+								<mat-option [value]="dd.jornadaParcial"
+									>Jornada parcial
+								</mat-option>
+								<mat-option [value]="dd.autonomo">Autónomo</mat-option>
+								<mat-option [value]="dd.independiente"
 									>Profesional independiente
 								</mat-option>
-								<mat-option value="temporal">Contrato temporal</mat-option>
-								<mat-option value="practicas">Contrato de prácticas</mat-option>
-								<mat-option value="formacion">Contrato de formación</mat-option>
-								<mat-option value="season">Seasonal</mat-option>
+								<mat-option [value]="dd.temporal">Contrato temporal</mat-option>
+								<mat-option [value]="dd.practicas"
+									>Contrato de prácticas
+								</mat-option>
+								<mat-option [value]="dd.formacion"
+									>Contrato de formación
+								</mat-option>
+								<mat-option [value]="dd.seasonal">Seasonal</mat-option>
 							</mat-select>
+							<mat-error *ngIf="checkError('tipoDeEmpleo', 'required')"
+								>Cargo es requerido
+							</mat-error>
+							<mat-error *ngIf="checkError('tipoDeEmpleo', 'minlength')"
+								>Cargo deberia ser mayor a 4 caracteres
+							</mat-error>
 						</mat-form-field>
 						<p>Nombre de la empresa</p>
 						<mat-form-field appearance="fill">
@@ -54,7 +69,7 @@
 							</mat-error>
 						</mat-form-field>
 					</div>
-					<div *ngIf="this.education">
+					<div *ngIf="this.experiences.education">
 						<p>Nombre de la institucion</p>
 						<mat-form-field appearance="fill">
 							<mat-label>Nombre de la institucion</mat-label>

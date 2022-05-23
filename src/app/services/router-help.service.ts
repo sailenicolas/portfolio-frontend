@@ -20,4 +20,23 @@ export class RouterHelpService {
 			});
 		});
 	}
+
+	compareArray(
+		strings: string[],
+		router: ActivatedRoute
+	): Observable<{ name: string; result: boolean }> {
+		let amp: { result: boolean; name: string }[] = [];
+		return new Observable(observer => {
+			// Wait until all operations have completed
+			router.paramMap.subscribe({
+				next: value => {
+					strings.forEach((val, index, array) => {
+						observer.next({ name: val, result: value.get('routeType') === val });
+					});
+				},
+				error: () => {},
+				complete: () => {},
+			});
+		});
+	}
 }
