@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 })
 export class AuthService {
 	constructor(
-		public currentUser: CurrentToken,
+		public currentToken: CurrentToken,
 		private http: HttpClient,
 		public jwtHelper: JwtHelperService,
 		public router: Router
@@ -31,27 +31,24 @@ export class AuthService {
 			},
 		});
 
-		console.log(loginForms.username);
 		return this.http.post<CurrentToken>(
-			'http://localhost:8080/' + this.API_VERSION + '/login',
+			'http://localhost:8080' + this.API_VERSION + '/user/login',
 			params,
 			options
 		);
 	}
 
 	public isAuthenticated(): boolean {
-		if (environment.production) {
-			if (this.jwtHelper.isTokenExpired(this.currentUser.access_token)) {
-				this.tokenExpiredHandler();
-				return false;
-			}
+		if (this.jwtHelper.isTokenExpired(this.currentToken.access_token)) {
+			this.tokenExpiredHandler();
+			return false;
 		}
 		return true;
 	}
 
 	public tokenExpiredHandler() {
 		sessionStorage.removeItem('access_token');
-		if (this.jwtHelper.isTokenExpired(this.currentUser.refresh_token)) {
+		if (this.jwtHelper.isTokenExpired(this.currentToken.refresh_token)) {
 			sessionStorage.clear();
 		}
 	}

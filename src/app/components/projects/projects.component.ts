@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { Projects } from '../../models/projects';
 
 @Component({
 	selector: 'app-projects',
@@ -6,15 +7,8 @@ import { Component } from '@angular/core';
 	styleUrls: ['./projects.component.scss'],
 })
 export class ProjectsComponent {
+	@Input('projects')
+	projects!: Projects[];
+
 	constructor() {}
-
-	openAddDialog($event: MouseEvent) {
-		$event.preventDefault();
-		console.log('Ccalled from parent 23' + $event);
-	}
-
-	openEditDialog($event: MouseEvent) {
-		$event.preventDefault();
-		console.log('Ccalled from parent 13' + $event.target);
-	}
 }

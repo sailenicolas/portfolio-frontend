@@ -26,7 +26,7 @@
 			<mat-icon>share</mat-icon>
 		</a>
 		<div *ngIf="auth.isAuthenticated(); else showLogin">
-			<a mat-button (click)="this.auth.logout($event)">Logout</a>
+			<a mat-button (click)="this.logout($event)">Logout</a>
 		</div>
 		<ng-template #showLogin>
 			<div class="buttons">

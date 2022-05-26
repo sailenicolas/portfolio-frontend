@@ -1,3 +1,11 @@
-<div>
-	<router-outlet></router-outlet>
-</div>
+<main>
+	<app-about-me [about]="items.aboutMe"></app-about-me>
+	<hr class="hr" />
+	<app-list-education [education]="items.educations"></app-list-education>
+	<hr class="hr" />
+	<app-list-experiencies [experiences]="items.experiences"></app-list-experiencies>
+	<hr class="hr" />
+	<app-soft-skills [softskills]="items.softSkills"></app-soft-skills>
+	<hr class="hr" />
+	<app-projects [projects]="items.projects"></app-projects>
+</main>

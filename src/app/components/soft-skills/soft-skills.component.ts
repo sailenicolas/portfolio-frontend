@@ -1,22 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { SoftSkills } from '../../interfaces/soft-skills';
 
 @Component({
 	selector: 'app-soft-skills',
 	templateUrl: './soft-skills.component.html',
 	styleUrls: ['./soft-skills.component.scss'],
 })
-export class SoftSkillsComponent implements OnInit {
+export class SoftSkillsComponent {
+	@Input('softskills')
+	softskills!: SoftSkills[];
+
 	constructor() {}
-
-	ngOnInit(): void {}
-
-	openAddDialog($event: MouseEvent) {
-		$event.preventDefault();
-		console.log('Ccalled from parent ' + $event.AT_TARGET.toString());
-	}
-
-	openEditDialog($event: MouseEvent) {
-		$event.preventDefault();
-		console.log('Ccalled from parent ' + $event.AT_TARGET.toString());
-	}
 }

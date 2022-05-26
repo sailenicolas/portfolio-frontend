@@ -1,7 +1,11 @@
 import { Injectable } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
+import { ComponentToEdit } from '../interfaces/component-to.edit';
 import { Experiences } from '../interfaces/experiences';
 import { Education } from '../interfaces/education';
+import { AboutMe } from '../interfaces/about-me';
+import { SoftSkills } from '../interfaces/soft-skills';
+import { Projects } from '../interfaces/projects';
 
 @Injectable({
 	providedIn: 'root',
@@ -9,83 +13,87 @@ import { Education } from '../interfaces/education';
 export class FormHelperService {
 	constructor() {}
 
-	getControls(education: boolean, experience: boolean) {
+	getControls(
+		flags: ComponentToEdit,
+		vale: Experiences | Education | AboutMe | SoftSkills | Projects | null
+	): { [p: string]: AbstractControl } {
 		let controls = {
-			education: [
-				{
-					name: 'institucion',
-					formC: new FormControl('', [Validators.required, Validators.minLength(4)]),
-				},
-				{
-					name: 'titulo',
-					formC: new FormControl('', [Validators.required, Validators.minLength(4)]),
-				},
-				{
-					name: 'carrera',
-					formC: new FormControl('', [Validators.required, Validators.minLength(4)]),
-				},
-				{
-					name: 'puntaje',
-					formC: new FormControl('', [Validators.required, Validators.minLength(4)]),
-				},
-				{
-					name: 'inicio',
-					formC: new FormControl('', [Validators.required, Validators.minLength(4)]),
-				},
-				{
-					name: 'fin',
-					formC: new FormControl('', [Validators.minLength(4)]),
-				},
-			],
-			experience: [
-				{
-					name: 'tipoDeEmpleo',
-					formC: new FormControl('', [Validators.required, Validators.minLength(4)]),
-				},
-				{
-					name: 'empresa',
-					formC: new FormControl('', [Validators.required, Validators.minLength(4)]),
-				},
-				{
-					name: 'ubicacion',
-					formC: new FormControl('', [Validators.required, Validators.minLength(4)]),
-				},
-				{
-					name: 'cargo',
-					formC: new FormControl('', [Validators.required, Validators.minLength(4)]),
-				},
-				{
-					name: 'inicio',
-					formC: new FormControl('', [Validators.required, Validators.minLength(4)]),
-				},
-				{
-					name: 'fin',
-					formC: new FormControl('', [Validators.minLength(4)]),
-				},
-			],
-		};
-		if (education) return controls.education;
-		else if (experience) return controls.experience;
-		return [];
-	}
+			education: {
+				institucion: new FormControl(
+					FormHelperService.getInitialValueEducation(<Education>vale, 'institucion'),
+					[Validators.required, Validators.minLength(4)]
+				),
+				titulo: new FormControl(
+					FormHelperService.getInitialValueEducation(<Education>vale, 'titulo'),
+					[Validators.required, Validators.minLength(4)]
+				),
+				carrera: new FormControl(
+					FormHelperService.getInitialValueEducation(<Education>vale, 'carrera'),
+					[Validators.required, Validators.minLength(4)]
+				),
+				puntaje: new FormControl(
+					FormHelperService.getInitialValueEducation(<Education>vale, 'puntaje'),
+					[Validators.required, Validators.minLength(4)]
+				),
+				inicio: new FormControl(
+					FormHelperService.getInitialValueEducation(<Education>vale, 'inicio'),
+					[Validators.required, Validators.minLength(4)]
+				),
+				fin: new FormControl(
+					FormHelperService.getInitialValueEducation(<Education>vale, 'fin'),
+					[Validators.minLength(4)]
+				),
+			},
+			experience: {
+				tipoDeEmpleo: new FormControl('', [Validators.required, Validators.min(1)]),
+				empresa: new FormControl('', [Validators.required, Validators.minLength(4)]),
+				ubicacion: new FormControl('', [Validators.required, Validators.minLength(4)]),
+				cargo: new FormControl('', [Validators.required, Validators.minLength(4)]),
+				dddd: new FormControl('', [Validators.required, Validators.minLength(4)]),
+				fin: new FormControl('', [Validators.minLength(4)]),
+			},
+			about: {
+				nombre: new FormControl('', [Validators.required, Validators.minLength(4)]),
+				sobremi: new FormControl('', [Validators.required, Validators.minLength(4)]),
+				ubicacion: new FormControl('', [Validators.required, Validators.minLength(4)]),
+				imagen: new FormControl('', [Validators.required, Validators.minLength(4)]),
+				contacto: new FormControl('', [Validators.required, Validators.minLength(4)]),
+			},
+			projects: {
+				titulo: new FormControl('', [Validators.required, Validators.minLength(4)]),
+				descripcion: new FormControl('', [Validators.required, Validators.minLength(4)]),
+				imagen: new FormControl('', [Validators.minLength(4)]),
+			},
 
-	setControls(
-		formGroup: FormGroup,
-		personData: Experiences | Education | null,
-		flags: { education: boolean; experience: boolean; about: boolean }
-	) {
-		const controls = this.getControls(flags.education, flags.experience);
-		type ObjectKey = keyof typeof personData;
-		for (let controlsKey of controls) {
-			if (personData != null) {
-				let myVar = controlsKey.name as ObjectKey;
-				controlsKey.formC.setValue(personData?.[myVar]);
-			}
-			formGroup.addControl(controlsKey.name, controlsKey.formC);
-		}
+			softkills: {
+				titulo: new FormControl('', [Validators.required, Validators.minLength(4)]),
+				descripcion: new FormControl('', [Validators.required, Validators.minLength(4)]),
+				val: new FormControl('', [
+					Validators.required,
+					Validators.min(0),
+					Validators.max(100),
+				]),
+			},
+		};
+		if (flags.education) return controls.education;
+		else if (flags.experience) return controls.experience;
+		else if (flags.about) return controls.about;
+		else if (flags.projects) return controls.projects;
+		else if (flags.softskills) return controls.softkills;
+		return {};
 	}
 
 	checkError(formGroup: FormGroup, formControlName: string, errorName: string) {
-		return formGroup.controls[formControlName].hasError(errorName);
+		if (formGroup.contains(formControlName)) {
+			return formGroup.controls[formControlName].hasError(errorName);
+		}
+		return false;
+	}
+
+	private static getInitialValueEducation(
+		vale: Education | null,
+		p: keyof Education
+	): string | number {
+		return vale ? vale[p] : '';
 	}
 }

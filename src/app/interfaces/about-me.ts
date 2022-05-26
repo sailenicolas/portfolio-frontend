@@ -1,5 +1,7 @@
 export interface AboutMe {
+	id: Number;
 	name: string;
-	about_me: string;
-	image: string;
+	aboutMe: string;
+	imagen: string;
+	header: string;
 }

@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { RouterHelpService } from '../../../services/router-help.service';
+import { RouterHelpService } from '../../services/router-help.service';
 import { ActivatedRoute } from '@angular/router';
 import { FormGroup } from '@angular/forms';
-import { FormHelperService } from '../../../services/form-helper.service';
-import { TipoDeEmpleo } from '../../../enums/tipo-de-empleo';
+import { FormHelperService } from '../../services/form-helper.service';
+import { TipoDeEmpleo } from '../../enums/tipo-de-empleo';
+import { ComponentToEdit } from '../../interfaces/component-to.edit';
 
 @Component({
 	selector: 'app-portfolio-add-form',
@@ -12,14 +13,12 @@ import { TipoDeEmpleo } from '../../../enums/tipo-de-empleo';
 })
 export class PortfolioAddForm implements OnInit {
 	data: any;
-	experiences: {
-		experience: boolean;
-		education: boolean;
-		about: boolean;
-	} = {
+	experiences: ComponentToEdit = {
 		experience: false,
 		education: false,
 		about: false,
+		softskills: false,
+		projects: false,
 	};
 	formGroup: FormGroup;
 	Typed: string;
@@ -36,7 +35,10 @@ export class PortfolioAddForm implements OnInit {
 
 	ngOnInit(): void {
 		this.routerService
-			.compareArray(['education', 'experiences', 'about'], this.router)
+			.compareArray(
+				['education', 'experiences', 'about', 'projects', 'softskills'],
+				this.router
+			)
 			.subscribe({
 				next: ({ name, result }) => {
 					let expt = this.experiences;
@@ -45,7 +47,6 @@ export class PortfolioAddForm implements OnInit {
 					this.experiences[myVar] = result;
 				},
 			});
-		this.formHelperService.setControls(this.formGroup, null, this.experiences);
 	}
 
 	onClickSubmit($event: MouseEvent) {

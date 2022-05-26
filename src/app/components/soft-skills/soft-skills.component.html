@@ -1,18 +1,17 @@
 <section class="container px-6 mx-auto">
 	<div class="mx-auto relative w-full px-1 py-10 mx-auto">
-		<app-shared-title title="SoftSkills"></app-shared-title>
+		<app-shared-title title="SoftSkills" [add]="true" listType="softskills"></app-shared-title>
 		<div class="grid gap-8 w-full grid-cols-1 md:grid-cols-8 mx-auto">
-			<div class="col-span-2">
-				<shared-progress [value]="12" text="algo"></shared-progress>
-			</div>
-			<div class="col-span-2">
-				<shared-progress [value]="14"></shared-progress>
-			</div>
-			<div class="col-span-2">
-				<shared-progress [value]="57"></shared-progress>
-			</div>
-			<div class="col-span-2">
-				<shared-progress [value]="98"></shared-progress>
+			<div class="col-span-2" *ngFor="let item of softskills">
+				<app-shared-title
+					[title]="item.titulo"
+					[edit]="true"
+					listType="softskills"
+					[ids]="item.id"></app-shared-title>
+				<shared-progress [softskills]="item"></shared-progress>
+				<p>
+					{{ item.descripcion }}
+				</p>
 			</div>
 		</div>
 	</div>

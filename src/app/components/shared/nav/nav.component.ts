@@ -14,8 +14,6 @@ export class NavComponent {
 
 	constructor(public auth: AuthService, public dark: DarkService) {
 		this.darkMode = this.dark.darkMode;
-		console.log('1 ' + this.darkMode);
-		console.log('2 ' + this.dark.darkMode);
 	}
 
 	togglerGroup($e: MouseEvent) {
@@ -23,6 +21,6 @@ export class NavComponent {
 	}
 
 	logout($event: MouseEvent) {
-		console.log('aaa');
+		this.auth.logout($event);
 	}
 }

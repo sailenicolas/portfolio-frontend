@@ -1,4 +1,39 @@
-<shared-header [about]="about"></shared-header>
+<div class="flex flex-grow-0 flex-col">
+	<div class="flex-initial flex-shrink-0 w-full">
+		<img
+			mat-card-image
+			src="assets/images/No-Branding-Header-Background-1.jpg"
+			alt="Photo of a Shiba Inu"
+			style="margin-left: 0 !important" />
+	</div>
+	<div class="flex-initial self-end relative w-[26px] h-[26px] bg-blue-600 rounded-full bottom-3">
+		<mat-icon>edit</mat-icon>
+	</div>
+</div>
+<div class="container px-6 mx-auto md:-mt-18 -mt-20 lg:-mt-24">
+	<div class="flex flex-row">
+		<div class="flex-initial flex-grow-0 md:px-3">
+			<div class="flex flex-col w-fit h-fit">
+				<div class="flex-initial flex-shrink-0">
+					<img
+						class="rounded-full w-[128px] h-[128px]"
+						style="border: solid 1px greenyellow"
+						[src]="about.imagen.length > 0 ? about.imagen : 'assets/images/128.png'"
+						alt="" />
+				</div>
+			</div>
+		</div>
+		<div class="flex-initial flex-grow self-end">
+			<app-shared-title [title]="about.name"></app-shared-title>
+			<div>
+				<a mat-icon-button
+					>Informacion de contacto
+					<mat-icon>email</mat-icon>
+				</a>
+			</div>
+		</div>
+	</div>
+</div>
 <div class="container px-6 mx-auto">
 	<div class="w-full">
 		<app-shared-title
@@ -6,7 +41,7 @@
 			[edit]="true"
 			[listType]="'about'"></app-shared-title>
 		<p class="block">
-			{{ about.about_me }}
+			{{ about.aboutMe }}
 		</p>
 	</div>
 </div>
