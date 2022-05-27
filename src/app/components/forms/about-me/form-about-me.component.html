@@ -1,0 +1,59 @@
+<div class="container py-6 mx-auto portfolio">
+	<div class="grid gap-6 grid-cols-12">
+		<div class="md:col-span-4"></div>
+		<div class="col-span-full md:col-span-5">
+			<form class="" [formGroup]="formGroup" (ngSubmit)="onClickSubmit($event)">
+				<mat-form-field appearance="fill">
+					<mat-label>Nombre</mat-label>
+					<input matInput formControlName="nombre" />
+					<mat-error *ngIf="checkError('nombre', 'required')"
+						>Nombre es requerido
+					</mat-error>
+					<mat-error *ngIf="checkError('nombre', 'minlength')"
+						>Nombre debería ser mayor a 4 caracteres
+					</mat-error>
+				</mat-form-field>
+				<mat-form-field appearance="fill">
+					<mat-label>Sobre Mi</mat-label>
+					<input matInput formControlName="sobremi" />
+					<mat-error *ngIf="checkError('sobremi', 'required')"
+						>Sobre Mi es requerido
+					</mat-error>
+					<mat-error *ngIf="checkError('sobremi', 'minlength')"
+						>Sobre Mi debería ser mayor a 4 caracteres
+					</mat-error>
+				</mat-form-field>
+				<mat-form-field appearance="fill">
+					<mat-label>Imagen</mat-label>
+					<input matInput formControlName="imagen" />
+					<mat-error *ngIf="checkError('imagen', 'required')"
+						>Imagen es requerido
+					</mat-error>
+					<mat-error *ngIf="checkError('imagen', 'minlength')"
+						>Imagen debería ser mayor a 4 caracteres
+					</mat-error>
+				</mat-form-field>
+				<mat-form-field appearance="fill">
+					<mat-label>Contacto</mat-label>
+					<input matInput formControlName="contacto" type="email" />
+					<mat-error *ngIf="checkError('contacto', 'required')"
+						>Contacto es requerido
+					</mat-error>
+					<mat-error *ngIf="checkError('contacto', 'minlength')"
+						>Contacto debería ser mayor a 4 caracteres
+					</mat-error>
+				</mat-form-field>
+				<mat-form-field appearance="fill">
+					<mat-label>Ubicación</mat-label>
+					<input matInput formControlName="ubicacion" type="email" />
+					<mat-error *ngIf="checkError('ubicacion', 'required')"
+						>Ubicación es requerido
+					</mat-error>
+					<mat-error *ngIf="checkError('ubicacion', 'minlength')"
+						>Ubicación debería ser mayor a 4 caracteres
+					</mat-error>
+				</mat-form-field>
+			</form>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,37 @@
+<div class="container py-6 mx-auto portfolio">
+	<div class="grid gap-6 grid-cols-12">
+		<div class="md:col-span-4"></div>
+		<div class="col-span-full md:col-span-5">
+			<form class="" [formGroup]="formGroup" (ngSubmit)="onClickSubmit($event)">
+				<p>Institucion</p>
+				<mat-form-field>
+					<mat-label>Nombre de la institucion</mat-label>
+					<input matInput formControlName="institucion" />
+				</mat-form-field>
+				<p>Titulo</p>
+				<mat-form-field appearance="fill">
+					<mat-label>Titulo</mat-label>
+					<input matInput formControlName="titulo" />
+				</mat-form-field>
+				<p>Nombre de la carrera</p>
+				<mat-form-field appearance="fill">
+					<mat-label>Nombre de la carrera</mat-label>
+					<input matInput formControlName="carrera" />
+				</mat-form-field>
+				<p>Puntaje obtenido</p>
+				<mat-form-field appearance="fill">
+					<mat-label>Puntaje obtenido</mat-label>
+					<input matInput formControlName="puntaje" />
+				</mat-form-field>
+				<mat-form-field>
+					<mat-label>Inicio</mat-label>
+					<input matInput formControlName="inicio" />
+				</mat-form-field>
+				<mat-form-field>
+					<mat-label>Fin</mat-label>
+					<input matInput formControlName="fin" />
+				</mat-form-field>
+			</form>
+		</div>
+	</div>
+</div>

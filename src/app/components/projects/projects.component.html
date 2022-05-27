@@ -6,13 +6,16 @@
 				<app-shared-title
 					[title]="item.titulo"
 					[edit]="true"
-					listType="projects"></app-shared-title>
-				<img [src]="item.imagen ?? 'assets/images/No-Branding-Header-Background-1.jpg'" class="image" alt="" />
+					listType="projects"
+					[ids]="item.id"></app-shared-title>
+				<img
+					[src]="item.imagen ?? 'assets/images/No-Branding-Header-Background-1.jpg'"
+					class="image"
+					alt="" />
 				<p>{{ item.descripcion }}</p>
-				<a mat-flat-button
-				   color="primary"
-				   [routerLink]="['view', 'projects', item.id]"
-				>View demo</a>
+				<a mat-flat-button color="primary" [routerLink]="['view', 'projects', item.id]"
+					>View demo</a
+				>
 			</div>
 		</div>
 	</div>

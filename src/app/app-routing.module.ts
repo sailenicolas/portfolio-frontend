@@ -5,9 +5,12 @@ import { LoginComponent } from './components/login/login.component';
 import { UnauthGuard } from './guards/unauth.guard';
 import { AuthGuard } from './guards/auth.guard';
 import { RolesAuthChildGuard } from './guards/roles-auth-child.guard';
-import { PortfolioEditForm } from './components/portfolio-edit-form/portfolio-edit-form.component';
 import { PortfolioComponent } from './components/portfolio/portfolio.component';
-import { PortfolioAddForm } from './components/portfolio-add-form/portfolio-add-form.component';
+import { FormExperiencesComponent } from './components/forms/experiences/form-experiences.component';
+import { FormEducationComponent } from './components/forms/education/form-education.component';
+import { FormAboutMeComponent } from './components/forms/about-me/form-about-me.component';
+import { FormSoftSkillsComponent } from './components/forms/soft-skills/form-soft-skills.component';
+import { FormProjectsComponent } from './components/forms/projects/form-projects.component';
 
 const routes: Routes = [
 	{ path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -28,30 +31,40 @@ const routes: Routes = [
 				path: '',
 				component: PortfolioComponent,
 			},
-
 			{
 				path: 'edit',
 				canLoad: [AuthGuard],
 				canActivate: [AuthGuard],
 				children: [
 					{
-						path: ':routeType',
+						path: 'educations/:id',
+						component: FormEducationComponent,
 						canLoad: [AuthGuard],
 						canActivate: [AuthGuard],
-						children: [
-							{
-								path: '',
-								component: PortfolioEditForm,
-								canLoad: [AuthGuard],
-								canActivate: [AuthGuard],
-							},
-							{
-								path: ':id',
-								component: PortfolioEditForm,
-								canLoad: [AuthGuard],
-								canActivate: [AuthGuard],
-							},
-						],
+					},
+					{
+						path: 'experiences/:id',
+						component: FormExperiencesComponent,
+						canLoad: [AuthGuard],
+						canActivate: [AuthGuard],
+					},
+					{
+						path: 'projects/:id',
+						component: FormProjectsComponent,
+						canLoad: [AuthGuard],
+						canActivate: [AuthGuard],
+					},
+					{
+						path: 'softskills/:id',
+						component: FormSoftSkillsComponent,
+						canLoad: [AuthGuard],
+						canActivate: [AuthGuard],
+					},
+					{
+						path: 'about',
+						canLoad: [AuthGuard],
+						canActivate: [AuthGuard],
+						component: FormAboutMeComponent,
 					},
 				],
 			},
@@ -61,10 +74,35 @@ const routes: Routes = [
 				canActivate: [AuthGuard],
 				children: [
 					{
-						path: ':routeType',
+						path: 'educations',
 						canLoad: [AuthGuard],
 						canActivate: [AuthGuard],
-						component: PortfolioAddForm,
+						component: FormEducationComponent,
+					},
+					{
+						path: 'experiences',
+						canLoad: [AuthGuard],
+						canActivate: [AuthGuard],
+						component: FormExperiencesComponent,
+					},
+					{
+						path: 'projects',
+						canLoad: [AuthGuard],
+						canActivate: [AuthGuard],
+						component: FormProjectsComponent,
+					},
+
+					{
+						path: 'softskills',
+						canLoad: [AuthGuard],
+						canActivate: [AuthGuard],
+						component: FormSoftSkillsComponent,
+					},
+					{
+						path: 'about',
+						canLoad: [AuthGuard],
+						canActivate: [AuthGuard],
+						component: FormAboutMeComponent,
 					},
 				],
 			},

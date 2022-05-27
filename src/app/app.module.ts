@@ -22,14 +22,17 @@ import { MaterialAppModule } from './modules/materialapp/material-app.module';
 import { SoftSkillsComponent } from './components/soft-skills/soft-skills.component';
 import { ProjectsComponent } from './components/projects/projects.component';
 import { ProgressComponent } from './components/shared/progress/progress.component';
-import { PortfolioEditForm } from './components/portfolio-edit-form/portfolio-edit-form.component';
-import { PortfolioAddForm } from './components/portfolio-add-form/portfolio-add-form.component';
 import { SharedTitleComponent } from './components/shared/shared-title/shared-title.component';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { AboutMeComponent } from './components/about-me/about-me.component';
 import { ListEducationComponent } from './components/list-education/list-education.component';
 import { ListExperienciesComponent } from './components/list-experiencies/list-experiencies.component';
+import { FormEducationComponent } from './components/forms/education/form-education.component';
+import { FormExperiencesComponent } from './components/forms/experiences/form-experiences.component';
+import { FormAboutMeComponent } from './components/forms/about-me/form-about-me.component';
+import { FormSoftSkillsComponent } from './components/forms/soft-skills/form-soft-skills.component';
+import { FormProjectsComponent } from './components/forms/projects/form-projects.component';
 
 @NgModule({
 	declarations: [
@@ -41,12 +44,15 @@ import { ListExperienciesComponent } from './components/list-experiencies/list-e
 		SoftSkillsComponent,
 		ProjectsComponent,
 		ProgressComponent,
-		PortfolioEditForm,
-		PortfolioAddForm,
 		SharedTitleComponent,
 		AboutMeComponent,
 		ListEducationComponent,
 		ListExperienciesComponent,
+		FormEducationComponent,
+		FormExperiencesComponent,
+		FormAboutMeComponent,
+		FormSoftSkillsComponent,
+		FormProjectsComponent,
 	],
 	imports: [
 		BrowserModule,

@@ -1,0 +1,39 @@
+<div class="container py-6 mx-auto portfolio">
+	<div class="grid gap-6 grid-cols-12">
+		<div class="md:col-span-4"></div>
+		<div class="col-span-full md:col-span-5">
+			<form class="" [formGroup]="formGroup" (ngSubmit)="onClickSubmit($event)">
+				<mat-form-field appearance="fill">
+					<mat-label>Titulo</mat-label>
+					<input matInput formControlName="titulo" />
+					<mat-error *ngIf="checkError('titulo', 'required')"
+						>Titulo es requerido
+					</mat-error>
+					<mat-error *ngIf="checkError('titulo', 'minlength')"
+						>Titulo debería ser mayor a 4 caracteres
+					</mat-error>
+				</mat-form-field>
+				<mat-form-field appearance="fill">
+					<mat-label>Descripcion</mat-label>
+					<textarea matInput formControlName="descripcion"></textarea>
+					<mat-error *ngIf="checkError('descripcion', 'required')"
+						>Descripcion es requerido
+					</mat-error>
+					<mat-error *ngIf="checkError('descripcion', 'minlength')"
+						>Descripcion debería ser mayor a 4 caracteres
+					</mat-error>
+				</mat-form-field>
+				<mat-form-field appearance="fill">
+					<mat-label>Valor porcentual</mat-label>
+					<input matInput formControlName="val" />
+					<mat-error *ngIf="checkError('val', 'required')"
+						>Valor porcentual es requerido
+					</mat-error>
+					<mat-error *ngIf="checkError('val', 'min')"
+						>Valor porcentual debería ser mayor a 4 caracteres
+					</mat-error>
+				</mat-form-field>
+			</form>
+		</div>
+	</div>
+</div>

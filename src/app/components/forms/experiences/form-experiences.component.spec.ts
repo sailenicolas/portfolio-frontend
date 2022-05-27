@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PortfolioEditForm } from './portfolio-edit-form.component';
+import { FormExperiencesComponent } from './form-experiences.component';
 
-describe('DialogEditionBasedComponent', () => {
-	let component: PortfolioEditForm;
-	let fixture: ComponentFixture<PortfolioEditForm>;
+describe('ExperiencesComponent', () => {
+	let component: FormExperiencesComponent;
+	let fixture: ComponentFixture<FormExperiencesComponent>;
 
 	beforeEach(async () => {
 		await TestBed.configureTestingModule({
-			declarations: [PortfolioEditForm],
+			declarations: [FormExperiencesComponent],
 		}).compileComponents();
 	});
 
 	beforeEach(() => {
-		fixture = TestBed.createComponent(PortfolioEditForm);
+		fixture = TestBed.createComponent(FormExperiencesComponent);
 		component = fixture.componentInstance;
 		fixture.detectChanges();
 	});

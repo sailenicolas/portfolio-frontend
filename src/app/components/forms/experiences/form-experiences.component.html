@@ -1,0 +1,68 @@
+<div class="container py-6 mx-auto portfolio">
+	<div class="grid gap-6 grid-cols-12">
+		<div class="md:col-span-4"></div>
+		<div class="col-span-full md:col-span-5">
+			<form class="" [formGroup]="formGroup" (ngSubmit)="onClickSubmit($event)">
+				<mat-form-field appearance="fill">
+					<mat-label>Cargo</mat-label>
+					<input matInput formControlName="cargo" />
+					<mat-error *ngIf="checkError('cargo', 'required')"
+						>Cargo es requerido
+					</mat-error>
+					<mat-error *ngIf="checkError('cargo', 'minlength')"
+						>Cargo deberia ser mayor a 4 caracteres
+					</mat-error>
+				</mat-form-field>
+				<mat-form-field appearance="fill">
+					<mat-label>Selecciona una opción</mat-label>
+					<mat-select formControlName="tipoDeEmpleo">
+						<mat-option [value]="tipoDeEmpleo.jornadaCompleta"
+							>Jornada completa
+						</mat-option>
+						<mat-option [value]="tipoDeEmpleo.jornadaParcial"
+							>Jornada parcial
+						</mat-option>
+						<mat-option [value]="tipoDeEmpleo.autonomo">Autónomo</mat-option>
+						<mat-option [value]="tipoDeEmpleo.independiente"
+							>Profesional independiente
+						</mat-option>
+						<mat-option [value]="tipoDeEmpleo.temporal">Contrato temporal</mat-option>
+						<mat-option [value]="tipoDeEmpleo.practicas"
+							>Contrato de prácticas
+						</mat-option>
+						<mat-option [value]="tipoDeEmpleo.formacion"
+							>Contrato de formación
+						</mat-option>
+						<mat-option [value]="tipoDeEmpleo.seasonal">Seasonal</mat-option>
+					</mat-select>
+				</mat-form-field>
+				<p>Nombre de la empresa</p>
+				<mat-form-field appearance="fill">
+					<mat-label>Nombre de la empresa</mat-label>
+					<input matInput formControlName="empresa" />
+					<mat-error *ngIf="checkError('empresa', 'required')"
+						>Nombre de la empresa es requerido
+					</mat-error>
+					<mat-error *ngIf="checkError('empresa', 'minlength')"
+						>Nombre de la empresa deberia ser mayor a 4 caracteres
+					</mat-error>
+				</mat-form-field>
+				<p>Ubicación</p>
+				<mat-form-field appearance="fill">
+					<mat-label>Ubicación</mat-label>
+					<input matInput formControlName="ubicacion" />
+					<mat-error *ngIf="checkError('ubicacion', 'required')"
+						>Nombre de la empresa es requerido
+					</mat-error>
+					<mat-error *ngIf="checkError('ubicacion', 'minlength')"
+						>Nombre de la empresa debería ser mayor a 4 caracteres
+					</mat-error>
+				</mat-form-field>
+				<div>
+					<button mat-button>No Thanks</button>
+					<button mat-button>Ok</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
