@@ -35,14 +35,10 @@ export class FormProjectsComponent implements OnInit {
 	}
 
 	ngOnInit(): void {
-		if (this.state != undefined) {
-			this.formGroup = new FormGroup(
-				this.formHelper.getControls(this.componentToEdit, <Projects>this.state)
-			);
-		} else {
+		if (this.state === undefined && this.routerState.url.includes('edit')) {
 			this.project = this.dataService.findPersonData(this.formHelper.getId(this.router), <
 				ComponentToEdit
-			>{ education: true });
+			>{ projects: true });
 			this.project.subscribe({
 				next: prop => {
 					this.formGroup = new FormGroup(

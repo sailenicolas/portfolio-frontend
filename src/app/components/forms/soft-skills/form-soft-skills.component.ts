@@ -35,10 +35,10 @@ export class FormSoftSkillsComponent implements OnInit {
 	}
 
 	ngOnInit(): void {
-		if (this.state === undefined) {
+		if (this.state === undefined && this.routerState.url.includes('edit')) {
 			this.softskill = this.dataService.findPersonData(this.formHelper.getId(this.router), <
 				ComponentToEdit
-			>{ education: true });
+			>{ softskills: true });
 			this.softskill.subscribe({
 				next: prop => {
 					this.formGroup = new FormGroup(

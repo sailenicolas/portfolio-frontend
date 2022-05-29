@@ -43,7 +43,7 @@ export class FormEducationComponent implements OnInit {
 	}
 
 	ngOnInit(): void {
-		if (this.state === undefined) {
+		if (this.state === undefined && this.routerState.url.includes('edit')) {
 			this.education = this.dataService.findPersonData(this.formHelper.getId(this.router), <
 				ComponentToEdit
 			>{ education: true });
