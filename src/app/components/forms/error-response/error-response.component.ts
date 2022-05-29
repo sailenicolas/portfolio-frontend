@@ -18,11 +18,12 @@ export class ErrorResponseComponent implements OnInit {
 
 	ngOnInit(): void {
 		this.errorArr = Array.isArray(this.error.details) ? this.error.details : null;
-		this.errorSingle = !Array.isArray(this.error.details)
-			? {
-					message: this.error.message,
-					details: <GenericError>this.error.details,
-			  }
-			: null;
+		this.errorSingle =
+			!Array.isArray(this.error.details) && this.error.details != null
+				? {
+						message: this.error.message,
+						details: <GenericError>this.error.details,
+				  }
+				: null;
 	}
 }

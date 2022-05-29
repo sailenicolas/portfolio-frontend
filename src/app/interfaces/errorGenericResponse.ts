@@ -1,8 +1,8 @@
 import { ErrorFormResponse } from './error-form-response';
 
 export interface GenericError {
-	errorcode: string;
-	errormsg: number;
+	errorCode: string;
+	errorMessage: number;
 }
 
 export interface ErrorGenericResponse {

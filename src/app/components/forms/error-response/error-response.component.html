@@ -7,7 +7,7 @@
 		<p>{{ err.field | titlecase }} {{ err.message | lowercase }}</p>
 	</div>
 	<div *ngIf="this.errorSingle != null">
-		<h4>{{ this.errorSingle.message }}</h4>
-		<p>{{ this.errorSingle.details.errormsg }}</p>
+		<h4>{{ this.errorSingle?.message }}</h4>
+		<p>{{ this.errorSingle?.details?.errorMessage }}</p>
 	</div>
 </div>

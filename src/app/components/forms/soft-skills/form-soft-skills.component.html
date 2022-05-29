@@ -45,6 +45,9 @@
 							<p>Se ha actualizado la informacion correspondiente.</p>
 						</div>
 					</div>
+					<div *ngIf="this.error != null">
+						<app-error-response [error]="this.error"></app-error-response>
+					</div>
 					<div>
 						<a [routerLink]="['/portfolio']" mat-button color="accent">Go Back</a>
 						<button mat-button>Ok</button>

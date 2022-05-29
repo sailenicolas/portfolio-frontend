@@ -44,10 +44,13 @@
 							<h3 class="font-extrabold">Felicitaciones</h3>
 							<p>Se ha actualizado la informacion correspondiente.</p>
 						</div>
-						<div>
-							<a [routerLink]="['/portfolio']" mat-button color="accent">Go Back</a>
-							<button mat-button>Ok</button>
-						</div>
+					</div>
+					<div *ngIf="this.error != null">
+						<app-error-response [error]="this.error"></app-error-response>
+					</div>
+					<div>
+						<a [routerLink]="['/portfolio']" mat-button color="accent">Go Back</a>
+						<button mat-button>Ok</button>
 					</div>
 				</div>
 				<ng-template #delete>

@@ -10,6 +10,7 @@ import { About } from '../../../interfaces/about';
 import { Education } from '../../../interfaces/education';
 import { DataService } from '../../../services/data.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ErrorGenericResponse } from '../../../interfaces/errorGenericResponse';
 
 @Component({
 	selector: 'form-soft-skills',
@@ -55,22 +56,37 @@ export class FormSoftSkillsComponent implements OnInit {
 
 	sucessfull: boolean = false;
 	private readonly componentToEdit = <ComponentToEdit>{ softskills: true };
+	public error: ErrorGenericResponse | null = null;
 
 	onClickSubmit($event: MouseEvent) {
 		if (this.formGroup.valid && this.isCurrentUrl('edit')) {
 			this.formHelper.putForm(this.formGroup, this.componentToEdit, this.router).subscribe({
 				next: vale => {
 					this.sucessfull = true;
+					this.routerState.navigate(['/portfolio']);
+				},
+				error: err => {
+					this.error = err.error;
 				},
 			});
 		} else if (this.isCurrentUrl('add')) {
 			this.formHelper.addForm(this.formGroup, this.componentToEdit).subscribe({
 				next: next => {
 					this.sucessfull = true;
-					console.log(next);
+					this.routerState.navigate(['/portfolio']);
 				},
 				error: err => {
-					console.log(err.error.details.errorMessage);
+					this.error = err.error;
+				},
+			});
+		} else if (this.routerState.url.includes('delete')) {
+			this.formHelper.delForm(this.componentToEdit, this.router).subscribe({
+				next: next => {
+					this.sucessfull = true;
+					this.routerState.navigate(['/portfolio']);
+				},
+				error: err => {
+					this.error = err.error;
 				},
 			});
 		}

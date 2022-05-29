@@ -10,6 +10,7 @@ import { Education } from '../../../interfaces/education';
 import { Projects } from '../../../interfaces/projects';
 import { SoftSkills } from '../../../interfaces/soft-skills';
 import { About } from '../../../interfaces/about';
+import { ErrorGenericResponse } from '../../../interfaces/errorGenericResponse';
 
 @Component({
 	selector: 'form-projects',
@@ -61,20 +62,44 @@ export class FormProjectsComponent implements OnInit {
 			this.formHelper.putForm(this.formGroup, this.componentToEdit, this.router).subscribe({
 				next: () => {
 					this.sucessfull = true;
+					this.routerState.navigate(['/portfolio']);
+				},
+				error: err => {
+					this.error = err.error;
 				},
 			});
 		} else if (this.routerState.url.includes('add')) {
 			this.formHelper.addForm(this.formGroup, this.componentToEdit).subscribe({
 				next: next => {
 					this.sucessfull = true;
-					console.log(next);
+					this.routerState.navigate(['/portfolio']);
 				},
 				error: err => {
-					console.log(err.error.details.errorMessage);
+					this.error = err.error;
+				},
+			});
+		} else if (this.routerState.url.includes('delete')) {
+			this.formHelper.delForm(this.componentToEdit, this.router).subscribe({
+				next: next => {
+					this.sucessfull = true;
+					this.routerState.navigate(['/portfolio']);
+				},
+				error: err => {
+					this.error =
+						err.error ??
+						<ErrorGenericResponse>{
+							message: err.status,
+							details: {
+								errorMessage: err.code,
+								errorCode: err.errorCode,
+							},
+						};
 				},
 			});
 		}
 	}
+
+	public error: ErrorGenericResponse | null = null;
 
 	isCurrentUrl(url: string) {
 		return this.routerState.url.includes(url);
