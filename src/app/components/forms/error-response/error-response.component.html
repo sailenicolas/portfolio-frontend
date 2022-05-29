@@ -1,11 +1,13 @@
 <div class="bg-red-700 border-l-4 border-red-400 text-red-100 p-4" role="alert">
-	<h3 class="font-extrabold">
-		No se ha actualizado la informacion correspondiente.
-	</h3>
+	<h3 class="font-extrabold">Ha ocurrido un error.</h3>
 	<div
 		class="bg-red-700 border-l-2 border-b-2 border-l-red-400 border-b-red-300 my-2 text-red-100"
 		role="alert"
-		*ngFor="let err of this.error">
+		*ngFor="let err of this.errorArr">
 		<p>{{ err.field | titlecase }} {{ err.message | lowercase }}</p>
+	</div>
+	<div *ngIf="this.errorSingle != null">
+		<h4>{{ this.errorSingle.message }}</h4>
+		<p>{{ this.errorSingle.details.errormsg }}</p>
 	</div>
 </div>

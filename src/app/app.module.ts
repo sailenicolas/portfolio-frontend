@@ -35,6 +35,7 @@ import { FormSoftSkillsComponent } from './components/forms/soft-skills/form-sof
 import { FormProjectsComponent } from './components/forms/projects/form-projects.component';
 import { ErrorResponseComponent } from './components/forms/error-response/error-response.component';
 import { EnumToStringPipe } from './pipes/enum-to-string.pipe';
+import { FormDeleteGenericComponent } from './components/forms/form-delete-generic/form-delete-generic.component';
 
 @NgModule({
 	declarations: [
@@ -56,7 +57,8 @@ import { EnumToStringPipe } from './pipes/enum-to-string.pipe';
 		FormSoftSkillsComponent,
 		FormProjectsComponent,
 		ErrorResponseComponent,
-  EnumToStringPipe,
+		EnumToStringPipe,
+		FormDeleteGenericComponent,
 	],
 	imports: [
 		BrowserModule,

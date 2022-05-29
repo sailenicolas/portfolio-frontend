@@ -98,11 +98,37 @@ const routes: Routes = [
 						canActivate: [AuthGuard],
 						component: FormSoftSkillsComponent,
 					},
+				],
+			},
+			{
+				path: 'delete',
+				canLoad: [AuthGuard],
+				canActivate: [AuthGuard],
+				children: [
 					{
-						path: 'about',
+						path: 'educations/:id',
 						canLoad: [AuthGuard],
 						canActivate: [AuthGuard],
-						component: FormAboutMeComponent,
+						component: FormEducationComponent,
+					},
+					{
+						path: 'experiences/:id',
+						canLoad: [AuthGuard],
+						canActivate: [AuthGuard],
+						component: FormExperiencesComponent,
+					},
+					{
+						path: 'projects/:id',
+						canLoad: [AuthGuard],
+						canActivate: [AuthGuard],
+						component: FormProjectsComponent,
+					},
+
+					{
+						path: 'softskills/:id',
+						canLoad: [AuthGuard],
+						canActivate: [AuthGuard],
+						component: FormSoftSkillsComponent,
 					},
 				],
 			},

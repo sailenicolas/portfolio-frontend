@@ -3,51 +3,56 @@
 		<div class="md:col-span-4"></div>
 		<div class="col-span-full md:col-span-5">
 			<form class="" [formGroup]="formGroup" (ngSubmit)="onClickSubmit($event)">
-				<p class="py-3"></p>
-				<mat-form-field appearance="fill">
-					<mat-label>Titulo</mat-label>
-					<input matInput formControlName="titulo" />
-					<mat-error *ngIf="checkError('titulo', 'required')"
-						>Titulo es requerido
-					</mat-error>
-					<mat-error *ngIf="checkError('titulo', 'minlength')"
-						>Titulo debería ser mayor a 4 caracteres
-					</mat-error>
-				</mat-form-field>
-				<p class="py-3"></p>
-				<mat-form-field appearance="fill">
-					<mat-label>Descripcion</mat-label>
-					<textarea matInput formControlName="descripcion"></textarea>
-					<mat-error *ngIf="checkError('descripcion', 'required')"
-						>Descripcion es requerido
-					</mat-error>
-					<mat-error *ngIf="checkError('descripcion', 'minlength')"
-						>Descripcion debería ser mayor a 4 caracteres
-					</mat-error>
-				</mat-form-field>
-				<p class="py-3"></p>
-				<mat-form-field appearance="fill">
-					<mat-label>Valor porcentual</mat-label>
-					<input matInput formControlName="val" />
-					<mat-error *ngIf="checkError('val', 'required')"
-						>Valor porcentual es requerido
-					</mat-error>
-					<mat-error *ngIf="checkError('val', 'min')"
-						>Valor porcentual debería ser mayor a 4 caracteres
-					</mat-error>
-				</mat-form-field>
-				<div *ngIf="this.sucessfull">
-					<div
-						class="bg-green-700 border-l-4 border-green-400 text-green-100 p-4"
-						role="alert">
-						<h3 class="font-extrabold">Felicitaciones</h3>
-						<p>Se ha actualizado la informacion correspondiente.</p>
+				<div *ngIf="!this.isCurrentUrl('delete'); else delete">
+					<p class="py-3"></p>
+					<mat-form-field appearance="fill">
+						<mat-label>Titulo</mat-label>
+						<input matInput formControlName="titulo" />
+						<mat-error *ngIf="checkError('titulo', 'required')"
+							>Titulo es requerido
+						</mat-error>
+						<mat-error *ngIf="checkError('titulo', 'minlength')"
+							>Titulo debería ser mayor a 4 caracteres
+						</mat-error>
+					</mat-form-field>
+					<p class="py-3"></p>
+					<mat-form-field appearance="fill">
+						<mat-label>Descripcion</mat-label>
+						<textarea matInput formControlName="descripcion"></textarea>
+						<mat-error *ngIf="checkError('descripcion', 'required')"
+							>Descripcion es requerido
+						</mat-error>
+						<mat-error *ngIf="checkError('descripcion', 'minlength')"
+							>Descripcion debería ser mayor a 4 caracteres
+						</mat-error>
+					</mat-form-field>
+					<p class="py-3"></p>
+					<mat-form-field appearance="fill">
+						<mat-label>Valor porcentual</mat-label>
+						<input matInput formControlName="val" />
+						<mat-error *ngIf="checkError('val', 'required')"
+							>Valor porcentual es requerido
+						</mat-error>
+						<mat-error *ngIf="checkError('val', 'min')"
+							>Valor porcentual debería ser mayor a 4 caracteres
+						</mat-error>
+					</mat-form-field>
+					<div *ngIf="this.sucessfull">
+						<div
+							class="bg-green-700 border-l-4 border-green-400 text-green-100 p-4"
+							role="alert">
+							<h3 class="font-extrabold">Felicitaciones</h3>
+							<p>Se ha actualizado la informacion correspondiente.</p>
+						</div>
+					</div>
+					<div>
+						<a [routerLink]="['/portfolio']" mat-button color="accent">Go Back</a>
+						<button mat-button>Ok</button>
 					</div>
 				</div>
-				<div>
-					<a [routerLink]="['/portfolio']" mat-button color="accent">Go Back</a>
-					<button mat-button>Ok</button>
-				</div>
+				<ng-template #delete>
+					<app-form-delete-generic></app-form-delete-generic>
+				</ng-template>
 			</form>
 		</div>
 	</div>

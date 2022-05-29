@@ -4,25 +4,54 @@
 			mat-raised-button
 			[matMenuTriggerFor]="menu"
 			class="example-icon"
-			aria-label="Example icon-button with menu icon">
+			aria-label="Example icon-button with menu icon"
+			*ngIf="windows.innerWidth < 750">
 			<mat-icon>menu</mat-icon>
 		</a>
 		<mat-menu #menu="matMenu">
-			<button mat-menu-item>Item 1</button>
-			<button mat-menu-item>Item 2</button>
+			<div mat-menu-item>
+				<a mat-button aria-label="Text align left" (click)="togglerGroup($event)">
+					<mat-icon *ngIf="darkMode">dark_mode</mat-icon>
+					<mat-icon *ngIf="!darkMode">light_mode</mat-icon>
+				</a>
+			</div>
+			<div mat-menu-item>
+				<a
+					mat-button
+					class="favorite-icon"
+					aria-label="Example icon-button with heart icon">
+					<mat-icon>favorite</mat-icon>
+				</a>
+			</div>
+			<div mat-menu-item>
+				<a mat-button aria-label="Example icon-button with share icon">
+					<mat-icon>share</mat-icon>
+				</a>
+			</div>
 		</mat-menu>
 		<a routerLink="/" mat-button>
 			<span>{{ title }}</span>
 		</a>
 		<span class="example-spacer"></span>
-		<a mat-button aria-label="Text align left" (click)="togglerGroup($event)">
+		<a
+			mat-button
+			aria-label="Text align left"
+			(click)="togglerGroup($event)"
+			*ngIf="windows.innerWidth > 750">
 			<mat-icon *ngIf="darkMode">dark_mode</mat-icon>
 			<mat-icon *ngIf="!darkMode">light_mode</mat-icon>
 		</a>
-		<a mat-button class="favorite-icon" aria-label="Example icon-button with heart icon">
+		<a
+			mat-button
+			class="favorite-icon"
+			aria-label="Example icon-button with heart icon"
+			*ngIf="windows.innerWidth > 750">
 			<mat-icon>favorite</mat-icon>
 		</a>
-		<a mat-button aria-label="Example icon-button with share icon">
+		<a
+			mat-button
+			aria-label="Example icon-button with share icon"
+			*ngIf="windows.innerWidth > 750">
 			<mat-icon>share</mat-icon>
 		</a>
 		<div *ngIf="auth.isAuthenticated(); else showLogin">

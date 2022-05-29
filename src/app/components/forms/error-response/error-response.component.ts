@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ErrorResponse } from '../education/form-education.component';
+import { ErrorFormResponse } from '../../../interfaces/error-form-response';
+import { ErrorGenericResponse, GenericError } from '../../../interfaces/errorGenericResponse';
 
 @Component({
 	selector: 'app-error-response',
@@ -8,9 +9,20 @@ import { ErrorResponse } from '../education/form-education.component';
 })
 export class ErrorResponseComponent implements OnInit {
 	@Input('error')
-	error!: Array<ErrorResponse>;
+	error!: ErrorGenericResponse;
+	errorArr: Array<ErrorFormResponse> | null = null;
+	array = Array;
+	errorSingle: { details: GenericError; message: string } | null = null;
 
 	constructor() {}
 
-	ngOnInit(): void {}
+	ngOnInit(): void {
+		this.errorArr = Array.isArray(this.error.details) ? this.error.details : null;
+		this.errorSingle = !Array.isArray(this.error.details)
+			? {
+					message: this.error.message,
+					details: <GenericError>this.error.details,
+			  }
+			: null;
+	}
 }

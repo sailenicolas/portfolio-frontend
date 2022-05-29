@@ -58,13 +58,11 @@ export class FormAboutMeComponent implements OnInit {
 
 	onClickSubmit($event: MouseEvent) {
 		if (this.formGroup.valid) {
-			this.formHelper
-				.submitForm(this.formGroup, this.componentToEdit, this.router)
-				.subscribe({
-					next: () => {
-						this.sucessfull = true;
-					},
-				});
+			this.formHelper.putForm(this.formGroup, this.componentToEdit, this.router).subscribe({
+				next: () => {
+					this.sucessfull = true;
+				},
+			});
 		}
 	}
 }

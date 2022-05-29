@@ -24,7 +24,11 @@
 		</a>
 	</div>
 	<div class="w-fit flex-initial" *ngIf="delete === true">
-		<a mat-icon-button color="warn" mat-button [routerLink]="['delete']" [state]="this.state">
+		<a
+			mat-icon-button
+			color="warn"
+			mat-button
+			[routerLink]="['delete', this.listType, this.ids]">
 			<mat-icon>delete</mat-icon>
 		</a>
 	</div>

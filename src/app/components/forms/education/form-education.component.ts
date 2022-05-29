@@ -10,13 +10,7 @@ import { Experiences } from '../../../interfaces/experiences';
 import { About } from '../../../interfaces/about';
 import { SoftSkills } from '../../../interfaces/soft-skills';
 import { Projects } from '../../../interfaces/projects';
-
-export interface ErrorResponse {
-	code: string;
-	extra: string;
-	field: string;
-	message: string;
-}
+import { ErrorGenericResponse } from '../../../interfaces/errorGenericResponse';
 
 @Component({
 	selector: 'form-education',
@@ -28,7 +22,7 @@ export class FormEducationComponent implements OnInit {
 	private education: Observable<Education | Experiences | About | SoftSkills | Projects | null> =
 		of(null);
 	private readonly state: Education | undefined;
-	public error: Array<ErrorResponse> | null = null;
+	public error: ErrorGenericResponse | null = null;
 
 	constructor(
 		private formHelper: FormHelperService,
@@ -61,23 +55,44 @@ export class FormEducationComponent implements OnInit {
 	private readonly componentToEdit = <ComponentToEdit>{ education: true };
 
 	onClickSubmit($event: MouseEvent) {
-		if (this.formGroup.valid) {
-			this.formHelper
-				.submitForm(this.formGroup, this.componentToEdit, this.router)
-				.subscribe({
-					next: next => {
-						this.sucessfull = true;
-						console.log(next);
-					},
-					error: err => {
-						console.log(err.error.details.errorMessage);
-						this.error = err.error.details.errorMessage;
-					},
-				});
+		if (this.formGroup.valid && this.routerState.url.includes('edit')) {
+			this.formHelper.putForm(this.formGroup, this.componentToEdit, this.router).subscribe({
+				next: value => {
+					this.sucessfull = true;
+					this.routerState.navigate(['/portfolio']);
+				},
+				error: err => {
+					this.error = err.error;
+				},
+			});
+		} else if (this.routerState.url.includes('add')) {
+			this.formHelper.addForm(this.formGroup, this.componentToEdit).subscribe({
+				next: next => {
+					this.sucessfull = true;
+					this.routerState.navigate(['/portfolio']);
+				},
+				error: err => {
+					this.error = err.error;
+				},
+			});
+		} else if (this.routerState.url.includes('delete')) {
+			this.formHelper.delForm(this.componentToEdit, this.router).subscribe({
+				next: next => {
+					this.sucessfull = true;
+					this.routerState.navigate(['/portfolio']);
+				},
+				error: err => {
+					this.error = err.error;
+				},
+			});
 		}
 	}
 
 	checkError(formControlName: string, errorName: string) {
 		return this.formHelper.checkError(this.formGroup, formControlName, errorName);
+	}
+
+	isCurrentUrl(url: string) {
+		return this.routerState.url.includes(url);
 	}
 }

@@ -57,14 +57,26 @@ export class FormProjectsComponent implements OnInit {
 	private readonly componentToEdit = <ComponentToEdit>{ projects: true };
 
 	onClickSubmit($event: MouseEvent) {
-		if (this.formGroup.valid) {
-			this.formHelper
-				.submitForm(this.formGroup, this.componentToEdit, this.router)
-				.subscribe({
-					next: () => {
-						this.sucessfull = true;
-					},
-				});
+		if (this.formGroup.valid && this.routerState.url.includes('edit')) {
+			this.formHelper.putForm(this.formGroup, this.componentToEdit, this.router).subscribe({
+				next: () => {
+					this.sucessfull = true;
+				},
+			});
+		} else if (this.routerState.url.includes('add')) {
+			this.formHelper.addForm(this.formGroup, this.componentToEdit).subscribe({
+				next: next => {
+					this.sucessfull = true;
+					console.log(next);
+				},
+				error: err => {
+					console.log(err.error.details.errorMessage);
+				},
+			});
 		}
+	}
+
+	isCurrentUrl(url: string) {
+		return this.routerState.url.includes(url);
 	}
 }

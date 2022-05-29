@@ -8,6 +8,8 @@ import { SoftSkills } from '../interfaces/soft-skills';
 import { Projects } from '../interfaces/projects';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { DataService } from './data.service';
+import { SuccessResponse } from '../interfaces/success-response';
+import { Observable } from 'rxjs';
 
 @Injectable({
 	providedIn: 'root',
@@ -160,7 +162,15 @@ export class FormHelperService {
 		return id;
 	}
 
-	submitForm(formGroup: FormGroup, flags: ComponentToEdit, router: ActivatedRoute) {
+	putForm(formGroup: FormGroup, flags: ComponentToEdit, router: ActivatedRoute) {
 		return this.dataService.putForm(formGroup, flags, this.getId(router));
+	}
+
+	addForm(formGroup: FormGroup, flags: ComponentToEdit) {
+		return this.dataService.addForm(formGroup, flags);
+	}
+
+	delForm(flags: ComponentToEdit, router: ActivatedRoute): Observable<SuccessResponse | null> {
+		return this.dataService.delForm(flags, this.getId(router));
 	}
 }

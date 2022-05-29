@@ -11,6 +11,7 @@ export class NavComponent {
 	@Input('title')
 	title: any;
 	darkMode: boolean;
+	windows = window;
 
 	constructor(public auth: AuthService, public dark: DarkService) {
 		this.darkMode = this.dark.darkMode;

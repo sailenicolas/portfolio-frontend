@@ -57,14 +57,26 @@ export class FormSoftSkillsComponent implements OnInit {
 	private readonly componentToEdit = <ComponentToEdit>{ softskills: true };
 
 	onClickSubmit($event: MouseEvent) {
-		if (this.formGroup.valid) {
-			this.formHelper
-				.submitForm(this.formGroup, this.componentToEdit, this.router)
-				.subscribe({
-					next: vale => {
-						this.sucessfull = true;
-					},
-				});
+		if (this.formGroup.valid && this.isCurrentUrl('edit')) {
+			this.formHelper.putForm(this.formGroup, this.componentToEdit, this.router).subscribe({
+				next: vale => {
+					this.sucessfull = true;
+				},
+			});
+		} else if (this.isCurrentUrl('add')) {
+			this.formHelper.addForm(this.formGroup, this.componentToEdit).subscribe({
+				next: next => {
+					this.sucessfull = true;
+					console.log(next);
+				},
+				error: err => {
+					console.log(err.error.details.errorMessage);
+				},
+			});
 		}
+	}
+
+	isCurrentUrl(url: string) {
+		return this.routerState.url.includes(url);
 	}
 }
