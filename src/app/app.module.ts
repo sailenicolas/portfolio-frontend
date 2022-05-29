@@ -25,7 +25,7 @@ import { ProgressComponent } from './components/shared/progress/progress.compone
 import { SharedTitleComponent } from './components/shared/shared-title/shared-title.component';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { AboutMeComponent } from './components/about-me/about-me.component';
+import { AboutComponent } from './components/about/about.component';
 import { ListEducationComponent } from './components/list-education/list-education.component';
 import { ListExperienciesComponent } from './components/list-experiencies/list-experiencies.component';
 import { FormEducationComponent } from './components/forms/education/form-education.component';
@@ -33,6 +33,8 @@ import { FormExperiencesComponent } from './components/forms/experiences/form-ex
 import { FormAboutMeComponent } from './components/forms/about-me/form-about-me.component';
 import { FormSoftSkillsComponent } from './components/forms/soft-skills/form-soft-skills.component';
 import { FormProjectsComponent } from './components/forms/projects/form-projects.component';
+import { ErrorResponseComponent } from './components/forms/error-response/error-response.component';
+import { EnumToStringPipe } from './pipes/enum-to-string.pipe';
 
 @NgModule({
 	declarations: [
@@ -45,7 +47,7 @@ import { FormProjectsComponent } from './components/forms/projects/form-projects
 		ProjectsComponent,
 		ProgressComponent,
 		SharedTitleComponent,
-		AboutMeComponent,
+		AboutComponent,
 		ListEducationComponent,
 		ListExperienciesComponent,
 		FormEducationComponent,
@@ -53,6 +55,8 @@ import { FormProjectsComponent } from './components/forms/projects/form-projects
 		FormAboutMeComponent,
 		FormSoftSkillsComponent,
 		FormProjectsComponent,
+		ErrorResponseComponent,
+  EnumToStringPipe,
 	],
 	imports: [
 		BrowserModule,

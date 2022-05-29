@@ -24,7 +24,7 @@
 			</div>
 		</div>
 		<div class="flex-initial flex-grow self-end">
-			<app-shared-title [title]="about.name"></app-shared-title>
+			<app-shared-title [title]="about.nombre"></app-shared-title>
 			<div>
 				<a mat-icon-button
 					>Informacion de contacto
@@ -37,11 +37,13 @@
 <div class="container px-6 mx-auto">
 	<div class="w-full">
 		<app-shared-title
-			[title]="about.name"
+			[title]="this.about.nombre"
 			[edit]="true"
-			[listType]="'about'"></app-shared-title>
+			listType="about"
+			[state]="this.about"
+			[ids]="this.about.id"></app-shared-title>
 		<p class="block">
-			{{ about.aboutMe }}
+			{{ about.sobremi }}
 		</p>
 	</div>
 </div>

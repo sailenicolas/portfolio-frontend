@@ -1,7 +1,7 @@
 import { Person as PersonInterface } from '../interfaces/person';
 import { Experiences } from '../interfaces/experiences';
 import { Education } from '../interfaces/education';
-import { AboutMe } from '../interfaces/about-me';
+import { About } from '../interfaces/about';
 import { SoftSkills } from '../interfaces/soft-skills';
 import { Projects } from '../interfaces/projects';
 
@@ -9,7 +9,7 @@ export class Person implements PersonInterface {
 	id: Number;
 	email: string;
 	username: string;
-	aboutMe: AboutMe;
+	aboutMe: About;
 	experiences: Experiences[];
 	educations: Education[];
 	softSkills: SoftSkills[];
@@ -19,7 +19,7 @@ export class Person implements PersonInterface {
 		id: Number,
 		email: string,
 		username: string,
-		aboutMe: AboutMe,
+		aboutMe: About,
 		experiences: Experiences[],
 		education: Education[],
 		softskills: SoftSkills[],

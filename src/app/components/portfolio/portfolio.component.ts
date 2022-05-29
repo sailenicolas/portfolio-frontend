@@ -16,7 +16,7 @@ export class PortfolioComponent implements OnInit {
 			0,
 			'',
 			'',
-			{ aboutMe: '', imagen: '', name: '', header: '', id: 0 },
+			{ sobremi: '', imagen: '', nombre: '', header: '', id: 0, email: '' },
 			[],
 			[],
 			[],

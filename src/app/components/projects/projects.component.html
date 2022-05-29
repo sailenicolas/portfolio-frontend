@@ -1,18 +1,25 @@
-<section class="container px-6 mx-auto">
+<section class="container px-6 mx-auto h-full">
 	<div class="mx-auto relative w-full px-1 py-12 mx-auto">
 		<app-shared-title title="Projects" [add]="true" listType="projects"></app-shared-title>
-		<div class="grid gap-8 w-full grid-cols-1 md:grid-cols-12 mx-auto">
-			<div class="col-span-6" *ngFor="let item of projects">
+		<div class="grid gap-8 w-full grid-cols-1 md:grid-cols-12 mx-auto h-fit">
+			<div class="col-span-6 h-full" *ngFor="let item of projects">
 				<app-shared-title
 					[title]="item.titulo"
 					[edit]="true"
 					listType="projects"
-					[ids]="item.id"></app-shared-title>
-				<img
-					[src]="item.imagen ?? 'assets/images/No-Branding-Header-Background-1.jpg'"
-					class="image"
-					alt="" />
-				<p>{{ item.descripcion }}</p>
+					[ids]="item.id"
+					[state]="item"></app-shared-title>
+				<div class="w-full">
+					<img
+						[src]="
+							item.imagen != null && item.imagen.length > 0
+								? item.imagen
+								: 'assets/images/No-Branding-Header-Background-1.jpg'
+						"
+						class="object-cover object-center mb-2 rounded-xl w-full h-[120px] ng-star-inserted"
+						alt="" />
+				</div>
+				<p class="block">{{ item.descripcion }}</p>
 				<a mat-flat-button color="primary" [routerLink]="['view', 'projects', item.id]"
 					>View demo</a
 				>

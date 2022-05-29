@@ -37,6 +37,12 @@ const routes: Routes = [
 				canActivate: [AuthGuard],
 				children: [
 					{
+						path: 'about/:id',
+						component: FormAboutMeComponent,
+						canLoad: [AuthGuard],
+						canActivate: [AuthGuard],
+					},
+					{
 						path: 'educations/:id',
 						component: FormEducationComponent,
 						canLoad: [AuthGuard],
@@ -59,12 +65,6 @@ const routes: Routes = [
 						component: FormSoftSkillsComponent,
 						canLoad: [AuthGuard],
 						canActivate: [AuthGuard],
-					},
-					{
-						path: 'about',
-						canLoad: [AuthGuard],
-						canActivate: [AuthGuard],
-						component: FormAboutMeComponent,
 					},
 				],
 			},

@@ -3,6 +3,7 @@
 		<div class="md:col-span-4"></div>
 		<div class="col-span-full md:col-span-5">
 			<form class="" [formGroup]="formGroup" (ngSubmit)="onClickSubmit($event)">
+				<p class="py-3"></p>
 				<mat-form-field appearance="fill">
 					<mat-label>Titulo</mat-label>
 					<input matInput formControlName="titulo" />
@@ -13,6 +14,7 @@
 						>Titulo debería ser mayor a 4 caracteres
 					</mat-error>
 				</mat-form-field>
+				<p class="py-3"></p>
 				<mat-form-field appearance="fill">
 					<mat-label>Descripcion</mat-label>
 					<textarea matInput formControlName="descripcion"></textarea>
@@ -23,6 +25,7 @@
 						>Descripcion debería ser mayor a 4 caracteres
 					</mat-error>
 				</mat-form-field>
+				<p class="py-3"></p>
 				<mat-form-field appearance="fill">
 					<mat-label>Valor porcentual</mat-label>
 					<input matInput formControlName="val" />
@@ -33,6 +36,18 @@
 						>Valor porcentual debería ser mayor a 4 caracteres
 					</mat-error>
 				</mat-form-field>
+				<div *ngIf="this.sucessfull">
+					<div
+						class="bg-green-700 border-l-4 border-green-400 text-green-100 p-4"
+						role="alert">
+						<h3 class="font-extrabold">Felicitaciones</h3>
+						<p>Se ha actualizado la informacion correspondiente.</p>
+					</div>
+				</div>
+				<div>
+					<a [routerLink]="['/portfolio']" mat-button color="accent">Go Back</a>
+					<button mat-button>Ok</button>
+				</div>
 			</form>
 		</div>
 	</div>

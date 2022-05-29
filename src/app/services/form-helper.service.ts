@@ -3,10 +3,11 @@ import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/fo
 import { ComponentToEdit } from '../interfaces/component-to.edit';
 import { Experiences } from '../interfaces/experiences';
 import { Education } from '../interfaces/education';
-import { AboutMe } from '../interfaces/about-me';
+import { About } from '../interfaces/about';
 import { SoftSkills } from '../interfaces/soft-skills';
 import { Projects } from '../interfaces/projects';
 import { ActivatedRoute, ParamMap } from '@angular/router';
+import { DataService } from './data.service';
 
 @Injectable({
 	providedIn: 'root',
@@ -18,12 +19,18 @@ import { ActivatedRoute, ParamMap } from '@angular/router';
  *
  * */
 export class FormHelperService {
-	constructor() {}
+	constructor(private dataService: DataService) {}
 
 	getControls(
 		flags: ComponentToEdit,
-		vale: Experiences | Education | AboutMe | SoftSkills | Projects | null
+		vale: Experiences | Education | About | SoftSkills | Projects | null
 	): { [p: string]: AbstractControl } {
+		/*
+		*
+		* Validators.required,
+		Validators.minLength(4),
+
+		* */
 		let controls = {
 			education: {
 				institucion: new FormControl(
@@ -40,7 +47,8 @@ export class FormHelperService {
 				]),
 				puntaje: new FormControl(vale != null && 'puntaje' in vale ? vale.puntaje : '', [
 					Validators.required,
-					Validators.minLength(4),
+					Validators.min(0),
+					Validators.max(100),
 				]),
 				inicio: new FormControl(vale != null && 'inicio' in vale ? vale.inicio : '', [
 					Validators.required,
@@ -89,13 +97,12 @@ export class FormHelperService {
 					[Validators.required, Validators.minLength(4)]
 				),
 				imagen: new FormControl(vale != null && 'imagen' in vale ? vale['imagen'] : '', [
+					Validators.minLength(4),
+				]),
+				email: new FormControl(vale != null && 'email' in vale ? vale['email'] : '', [
 					Validators.required,
 					Validators.minLength(4),
 				]),
-				contacto: new FormControl(
-					vale != null && 'contacto' in vale ? vale['institucion'] : '',
-					[Validators.required, Validators.minLength(4)]
-				),
 			},
 			projects: {
 				titulo: new FormControl(vale != null && 'titulo' in vale ? vale.titulo : '', [
@@ -151,5 +158,9 @@ export class FormHelperService {
 			},
 		});
 		return id;
+	}
+
+	submitForm(formGroup: FormGroup, flags: ComponentToEdit, router: ActivatedRoute) {
+		return this.dataService.putForm(formGroup, flags, this.getId(router));
 	}
 }

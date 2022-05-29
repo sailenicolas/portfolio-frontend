@@ -3,34 +3,87 @@
 		<div class="md:col-span-4"></div>
 		<div class="col-span-full md:col-span-5">
 			<form class="" [formGroup]="formGroup" (ngSubmit)="onClickSubmit($event)">
-				<p>Institucion</p>
+				<p class="py-3">Institucion</p>
 				<mat-form-field>
 					<mat-label>Nombre de la institucion</mat-label>
 					<input matInput formControlName="institucion" />
+					<mat-error *ngIf="checkError('institucion', 'required')"
+						>Nombre de la institucion es requerido
+					</mat-error>
+					<mat-error *ngIf="checkError('institucion', 'minlength')"
+						>Nombre de la institucion debería ser mayor a 4 caracteres
+					</mat-error>
 				</mat-form-field>
-				<p>Titulo</p>
+				<p class="py-3">Titulo</p>
 				<mat-form-field appearance="fill">
 					<mat-label>Titulo</mat-label>
 					<input matInput formControlName="titulo" />
+					<mat-error *ngIf="checkError('titulo', 'required')"
+						>Titulo es requerido
+					</mat-error>
+					<mat-error *ngIf="checkError('titulo', 'minlength')"
+						>Titulo debería ser mayor a 4 caracteres
+					</mat-error>
 				</mat-form-field>
-				<p>Nombre de la carrera</p>
+				<p class="py-3">Nombre de la carrera</p>
 				<mat-form-field appearance="fill">
 					<mat-label>Nombre de la carrera</mat-label>
 					<input matInput formControlName="carrera" />
+					<mat-error *ngIf="checkError('carrera', 'required')"
+						>Nombre de la carrera es requerido
+					</mat-error>
+					<mat-error *ngIf="checkError('carrera', 'minlength')"
+						>Nombre de la carrera debería ser mayor a 4 caracteres
+					</mat-error>
 				</mat-form-field>
-				<p>Puntaje obtenido</p>
+				<p class="py-3">Puntaje obtenido</p>
 				<mat-form-field appearance="fill">
 					<mat-label>Puntaje obtenido</mat-label>
 					<input matInput formControlName="puntaje" />
+					<mat-error *ngIf="checkError('puntaje', 'required')"
+						>Puntaje obtenido es requerido
+					</mat-error>
+					<mat-error *ngIf="checkError('puntaje', 'min')"
+						>Puntaje obtenido debería ser mayor a 0
+					</mat-error>
+					<mat-error *ngIf="checkError('puntaje', 'max')"
+						>Puntaje obtenido no debería ser mayor a 100
+					</mat-error>
 				</mat-form-field>
+				<p class="py-3">Fecha de inicio</p>
 				<mat-form-field>
-					<mat-label>Inicio</mat-label>
-					<input matInput formControlName="inicio" />
+					<mat-label>Fecha de inicio</mat-label>
+					<input matInput type="date" formControlName="inicio" />
+					<mat-error *ngIf="checkError('inicio', 'required')"
+						>Fecha de inicio Inicio es requerido
+					</mat-error>
 				</mat-form-field>
+				<p class="py-3">Fecha de finalizacion</p>
 				<mat-form-field>
-					<mat-label>Fin</mat-label>
-					<input matInput formControlName="fin" />
+					<mat-label>Fecha de finalizacion</mat-label>
+					<input matInput type="date" formControlName="fin" />
+					<mat-error *ngIf="checkError('fin', 'required')"
+						>Fecha de finalizacion es requerido
+					</mat-error>
+					<mat-error *ngIf="checkError('fin', 'minlength')"
+						>Fecha de finalizacion debería ser mayor a 4 caracteres
+					</mat-error>
 				</mat-form-field>
+				<div *ngIf="this.sucessfull">
+					<div
+						class="bg-green-700 border-l-4 border-green-400 text-green-100 p-4"
+						role="alert">
+						<h3 class="font-extrabold">Felicitaciones</h3>
+						<p>Se ha actualizado la informacion correspondiente.</p>
+					</div>
+				</div>
+				<div *ngIf="this.error != null">
+					<app-error-response [error]="this.error"></app-error-response>
+				</div>
+				<div>
+					<a [routerLink]="['/portfolio']" mat-button color="accent">Go Back</a>
+					<button mat-button>Ok</button>
+				</div>
 			</form>
 		</div>
 	</div>

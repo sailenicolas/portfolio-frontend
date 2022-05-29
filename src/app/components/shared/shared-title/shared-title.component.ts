@@ -18,6 +18,8 @@ export class SharedTitleComponent {
 	listType: string;
 	@Input('edit')
 	edit: boolean = false;
+	@Input('state')
+	state: Object = {};
 
 	mb() {
 		return !this.add ? '0px' : false;
