@@ -20,7 +20,7 @@ export class DataService {
 
 	constructor(private http: HttpClient) {}
 
-	private readonly URL_HOST = environment.url_host + this.API_VERSION;
+	private readonly URL_HOST = environment.urlHost + '/' + this.API_VERSION;
 
 	private options = {
 		headers: new HttpHeaders(),
@@ -54,10 +54,7 @@ export class DataService {
 		let options = {
 			headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded'),
 		};
-		return this.http.get<Person>(
-			'http://localhost:8080' + this.API_VERSION + '/user/me',
-			options
-		);
+		return this.http.get<Person>(this.URL_HOST + '/user/me', options);
 	}
 
 	putForm(

@@ -18,7 +18,8 @@ export class AuthService {
 		public router: Router
 	) {}
 
-	readonly API_VERSION = environment.apiVersion;
+	private readonly API_VERSION = environment.apiVersion;
+	private readonly URL_HOST = environment.urlHost + '/' + this.API_VERSION;
 
 	login(loginForms: LoginForm): Observable<CurrentToken> {
 		let options = {
@@ -31,11 +32,7 @@ export class AuthService {
 			},
 		});
 
-		return this.http.post<CurrentToken>(
-			'http://localhost:8080' + this.API_VERSION + '/user/login',
-			params,
-			options
-		);
+		return this.http.post<CurrentToken>(this.URL_HOST + '/user/login', params, options);
 	}
 
 	public isAuthenticated(): boolean {

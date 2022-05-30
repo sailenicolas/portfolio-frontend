@@ -78,8 +78,8 @@ import { AboutDialogComponent } from './components/about/modal/about-dialog.comp
 					}
 					return sessionStorage.getItem('access_token');
 				},
-				allowedDomains: ['localhost', 'localhost:8080'],
-				disallowedRoutes: ['http://example.com/examplebadroute/'],
+				allowedDomains: ['localhost', 'localhost:8080', 'jwtbackendapi.herokuapp.com'],
+				disallowedRoutes: [],
 			},
 		}),
 		LayoutModule,
