@@ -6,42 +6,61 @@ import { AppComponent } from './app.component';
 
 import { NavComponent } from './components/shared/nav/nav.component';
 import { LoginComponent } from './components/login/login.component';
-import { UserComponent } from './components/user/user.component';
 import { AuthGuard } from './guards/auth.guard';
-import { CardComponent } from './components/card/card.component';
 import { PortfolioComponent } from './components/portfolio/portfolio.component';
-import { HeaderComponent } from './components/shared/header/header.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { HttpclientInterceptor } from './interceptors/httpclient.interceptor';
 import { AuthService } from './services/auth.service';
-import { CurrentUser } from './class/currentuser';
+import { CurrentToken } from './models/current-token';
 import { UnauthGuard } from './guards/unauth.guard';
 import { JwtModule } from '@auth0/angular-jwt';
-import { MatCardModule } from '@angular/material/card';
-import { DashComponent } from './components/dash/dash.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { FooterComponent } from './components/shared/footer/footer.component';
-import { ListComponent } from './components/list/list.component';
 import { MaterialAppModule } from './modules/materialapp/material-app.module';
-import { SoftskillsComponent } from './components/softskills/softskills.component';
+import { SoftSkillsComponent } from './components/soft-skills/soft-skills.component';
 import { ProjectsComponent } from './components/projects/projects.component';
+import { ProgressComponent } from './components/shared/progress/progress.component';
+import { SharedTitleComponent } from './components/shared/shared-title/shared-title.component';
+import { MatSelectModule } from '@angular/material/select';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { AboutComponent } from './components/about/about.component';
+import { ListEducationComponent } from './components/list-education/list-education.component';
+import { ListExperienciesComponent } from './components/list-experiencies/list-experiencies.component';
+import { FormEducationComponent } from './components/forms/education/form-education.component';
+import { FormExperiencesComponent } from './components/forms/experiences/form-experiences.component';
+import { FormAboutMeComponent } from './components/forms/about-me/form-about-me.component';
+import { FormSoftSkillsComponent } from './components/forms/soft-skills/form-soft-skills.component';
+import { FormProjectsComponent } from './components/forms/projects/form-projects.component';
+import { ErrorResponseComponent } from './components/forms/error-response/error-response.component';
+import { EnumToStringPipe } from './pipes/enum-to-string.pipe';
+import { FormDeleteGenericComponent } from './components/forms/form-delete-generic/form-delete-generic.component';
+import { AboutDialogComponent } from './components/about/modal/about-dialog.component';
 
 @NgModule({
 	declarations: [
 		AppComponent,
 		NavComponent,
 		LoginComponent,
-		UserComponent,
-		CardComponent,
 		PortfolioComponent,
-		HeaderComponent,
-		DashComponent,
 		FooterComponent,
-		ListComponent,
-  SoftskillsComponent,
-  ProjectsComponent,
+		SoftSkillsComponent,
+		ProjectsComponent,
+		ProgressComponent,
+		SharedTitleComponent,
+		AboutComponent,
+		ListEducationComponent,
+		ListExperienciesComponent,
+		FormEducationComponent,
+		FormExperiencesComponent,
+		FormAboutMeComponent,
+		FormSoftSkillsComponent,
+		FormProjectsComponent,
+		ErrorResponseComponent,
+		EnumToStringPipe,
+		FormDeleteGenericComponent,
+		AboutDialogComponent,
 	],
 	imports: [
 		BrowserModule,
@@ -55,16 +74,17 @@ import { ProjectsComponent } from './components/projects/projects.component';
 			config: {
 				tokenGetter: request => {
 					if (request != undefined && request.url.includes('foo')) {
-						return localStorage.getItem('access_token_foo');
+						return sessionStorage.getItem('access_token_foo');
 					}
-					return localStorage.getItem('access_token');
+					return sessionStorage.getItem('access_token');
 				},
-				allowedDomains: ['localhost'],
-				disallowedRoutes: ['http://example.com/examplebadroute/'],
+				allowedDomains: ['localhost', 'localhost:8080', 'jwtbackendapi.herokuapp.com'],
+				disallowedRoutes: [],
 			},
 		}),
-		MatCardModule,
 		LayoutModule,
+		MatSelectModule,
+		MatDatepickerModule,
 	],
 	providers: [
 		{
@@ -74,7 +94,7 @@ import { ProjectsComponent } from './components/projects/projects.component';
 		},
 		AuthGuard,
 		AuthService,
-		CurrentUser,
+		CurrentToken,
 		UnauthGuard,
 	],
 	bootstrap: [AppComponent],

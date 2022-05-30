@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { CurrentUser } from '../class/currentuser';
-import { LoginForm } from '../class/loginform';
+import { CurrentToken } from '../models/current-token';
+import { LoginForm } from '../models/login-form';
 import { environment } from '../../environments/environment';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Observable } from 'rxjs';
@@ -12,15 +12,16 @@ import { Router } from '@angular/router';
 })
 export class AuthService {
 	constructor(
-		public currentUser: CurrentUser,
+		public currentToken: CurrentToken,
 		private http: HttpClient,
 		public jwtHelper: JwtHelperService,
 		public router: Router
 	) {}
 
-	readonly API_VERSION = environment.apiVersion;
+	private readonly API_VERSION = environment.apiVersion;
+	private readonly URL_HOST = environment.urlHost + '/' + this.API_VERSION;
 
-	login(loginForms: LoginForm): Observable<CurrentUser> {
+	login(loginForms: LoginForm): Observable<CurrentToken> {
 		let options = {
 			headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded'),
 		};
@@ -31,27 +32,20 @@ export class AuthService {
 			},
 		});
 
-		console.log(loginForms.username);
-		return this.http.post<CurrentUser>(
-			'http://localhost:8080/' + this.API_VERSION + '/login',
-			params,
-			options
-		);
+		return this.http.post<CurrentToken>(this.URL_HOST + '/user/login', params, options);
 	}
 
 	public isAuthenticated(): boolean {
-		if (environment.production) {
-			if (this.jwtHelper.isTokenExpired(this.currentUser.access_token)) {
-				this.tokenExpiredHandler();
-				return false;
-			}
+		if (this.jwtHelper.isTokenExpired(this.currentToken.access_token)) {
+			this.tokenExpiredHandler();
+			return false;
 		}
 		return true;
 	}
 
 	public tokenExpiredHandler() {
 		sessionStorage.removeItem('access_token');
-		if (this.jwtHelper.isTokenExpired(this.currentUser.refresh_token)) {
+		if (this.jwtHelper.isTokenExpired(this.currentToken.refresh_token)) {
 			sessionStorage.clear();
 		}
 	}

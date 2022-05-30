@@ -1,0 +1,38 @@
+<section class="container px-6 mx-auto" [formGroup]="testForm">
+	<div class="mx-auto relative w-full px-1 py-10 rounded-3xl border border-amber-900">
+		<app-shared-title title="Educacion" listType="educations" [add]="true"></app-shared-title>
+		<div class="grid gap-8 w-full grid-cols-1 md:grid-cols-12 mx-auto">
+			<div class="col-span-6 border border-blue-700" *ngFor="let item of items">
+				<div class="grid gap-4 grid-cols-12">
+					<div class="col-span-3 p-3 mx-auto">
+						<mat-icon>school_outline</mat-icon>
+					</div>
+					<div class="col-span-9">
+						<app-shared-title
+							[title]="item.titulo"
+							[delete]="true"
+							[edit]="true"
+							[ids]="item.id"
+							[state]="item"
+							listType="educations">
+						</app-shared-title>
+						<div class="flex flex-col w-full align-self-center">
+							<div class="flex flex-row justify-space-between">
+								<div class="flex flex-col w-full">
+									<span class="text-xs text-normal">
+										<span aria-hidden="true">{{ item.carrera }}</span>
+									</span>
+									<span class="text-xs text-base leading-relaxed text-gray-400">
+										<span aria-hidden="true">
+											{{ item.inicio }} - {{ item.fin }}
+										</span>
+									</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

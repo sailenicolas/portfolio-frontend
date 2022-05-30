@@ -3,7 +3,7 @@
 		<div class="columns is-centered">
 			<div class="column is-5-desktop is-7-tablet">
 				<h1>Login</h1>
-				<form [formGroup]="loginForms" (submit)="onSubmitClick($event)">
+				<form [formGroup]="loginForms" (submit)="onSubmitClick()">
 					<mat-form-field appearance="fill">
 						<mat-label>Enter your email</mat-label>
 						<input
@@ -12,6 +12,12 @@
 							placeholder="pat@example.com"
 							type="text"
 							required />
+						<mat-error *ngIf="loginForms.controls['username'].hasError('required')"
+							>Valor porcentual es requerido
+						</mat-error>
+						<mat-error *ngIf="loginForms.controls['username'].hasError('min')"
+							>Valor porcentual es requerido
+						</mat-error>
 					</mat-form-field>
 					<mat-form-field appearance="fill">
 						<mat-label>Enter your password</mat-label>
@@ -20,25 +26,23 @@
 							[type]="hide ? 'password' : 'text'"
 							formControlName="password" />
 						<a
-							mat-icon
 							matSuffix
 							(click)="hide = !hide"
 							[attr.aria-label]="'Hide password'"
 							[attr.aria-pressed]="hide">
-							<mat-icon>{{
-								hide ? 'visibility_off' : 'visibility'
-								}}</mat-icon>
+							<mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
 						</a>
+						<mat-error *ngIf="loginForms.controls['password'].hasError('required')"
+							>Valor porcentual es requerido
+						</mat-error>
+						<mat-error *ngIf="loginForms.controls['password'].hasError('min')"
+							>Valor porcentual es requerido
+						</mat-error>
 					</mat-form-field>
-					<button
-						mat-raised-button
-						color="primary"
-						[disabled]="loginForms.invalid">
+					<button mat-raised-button color="primary" [disabled]="loginForms.invalid">
 						Submit
 						<mat-icon *ngIf="hideSpinner">
-							<mat-spinner
-								color="accent"
-								diameter="20"></mat-spinner>
+							<mat-spinner color="accent" diameter="20"></mat-spinner>
 						</mat-icon>
 					</button>
 				</form>

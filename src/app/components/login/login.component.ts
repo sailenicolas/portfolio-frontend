@@ -1,45 +1,39 @@
-import { AfterViewChecked, Component } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
-import { CurrentUser } from '../../class/currentuser';
+import { CurrentToken } from '../../models/current-token';
 import { Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
-
-export interface FormsLogin {
-	email: string;
-	password: string;
-}
 
 @Component({
 	selector: 'app-login',
 	templateUrl: './login.component.html',
 	styleUrls: ['./login.component.css'],
 })
-export class LoginComponent implements AfterViewChecked {
+export class LoginComponent {
 	hide: boolean = true;
 
 	constructor(
-		public currentUser: CurrentUser,
+		public currentUser: CurrentToken,
 		private auth: AuthService,
 		public router: Router
 	) {}
 
 	loginForms: FormGroup = new FormGroup({
+		username: new FormControl('', [Validators.required, Validators.minLength(4)]),
 		password: new FormControl('', [Validators.required, Validators.minLength(4)]),
-		username: new FormControl('', [Validators.required, Validators.minLength(5)]),
 	});
 	hideSpinner: boolean = false;
 
-	onSubmitClick($event: SubmitEvent) {
+	onSubmitClick() {
 		if (this.loginForms.valid) {
 			this.hideSpinner = true;
 			this.auth.login(this.loginForms.value).subscribe({
-				next: (current: CurrentUser) => {
+				next: (current: CurrentToken) => {
 					this.currentUser.refresh_token = current.refresh_token;
 					this.currentUser.access_token = current.access_token;
-					this.currentUser.expires_at = current.expires_at;
 					if (this.auth.isAuthenticated()) {
-						this.router.navigate(['/users']).then(r => console.log(r));
+						this.router.navigate(['/portfolio']).then(r => console.log(r));
 					}
 				},
 				error: (err: HttpErrorResponse) => {
@@ -53,6 +47,4 @@ export class LoginComponent implements AfterViewChecked {
 			});
 		}
 	}
-
-	ngAfterViewChecked(): void {}
 }

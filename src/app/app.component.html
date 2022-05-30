@@ -1,7 +1,5 @@
 <div>
-	<app-nav [title]="title"></app-nav>
-	<main>
-		<router-outlet></router-outlet>
-	</main>
-	<app-footer [title]="title"></app-footer>
+	<shared-nav [title]="title"></shared-nav>
+	<router-outlet></router-outlet>
+	<shared-footer [title]="title"></shared-footer>
 </div>

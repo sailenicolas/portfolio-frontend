@@ -1,0 +1,15 @@
+<h2 mat-dialog-title>Informacion de contacto</h2>
+<mat-dialog-content
+	>Aqui puedes encontrar la informacion de contacto:
+	<div class="flex flex-wrap">
+		<a [href]="'mailto:' + data.email">{{ data.email }}</a>
+		<a href="http://twitter.com/">
+			<mat-icon>twitter</mat-icon>
+		</a>
+	</div>
+</mat-dialog-content>
+<mat-dialog-actions>
+	<button mat-button mat-dialog-close>Cancel</button>
+	<!-- The mat-dialog-close directive optionally accepts a value as a result for the dialog. -->
+	<button mat-button [mat-dialog-close]="true">Delete</button>
+</mat-dialog-actions>
