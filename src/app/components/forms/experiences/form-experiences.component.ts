@@ -43,7 +43,7 @@ export class FormExperiencesComponent implements OnInit {
 		if (this.state === undefined && this.routerState.url.includes('edit')) {
 			this.experiences = this.dataService.findPersonData(this.formHelper.getId(this.router), <
 				ComponentToEdit
-			>{ education: true });
+			>{ experience: true });
 			this.experiences.subscribe({
 				next: prop => {
 					this.formGroup = new FormGroup(

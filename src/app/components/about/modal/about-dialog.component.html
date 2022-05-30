@@ -1,15 +1,32 @@
 <h2 mat-dialog-title>Informacion de contacto</h2>
-<mat-dialog-content
-	>Aqui puedes encontrar la informacion de contacto:
-	<div class="flex flex-wrap">
-		<a [href]="'mailto:' + data.email">{{ data.email }}</a>
-		<a href="http://twitter.com/">
-			<mat-icon>twitter</mat-icon>
-		</a>
+<mat-dialog-content>
+	<div class="flex flex-wrap flex-col w-fit">
+		<h3 class="w-fit">
+			Hola, soy {{ data.nombre }}, aqui puedes encontrar como encontrarme
+			<mat-icon>fingerprint</mat-icon>
+		</h3>
+		<div class="flex-initial">
+			<p>Un poco sobre mi:</p>
+			<p>{{ data.sobremi }}</p>
+			<p>Ademas soy de</p>
+			<p>{{ data.ubicacion }}</p>
+		</div>
+		<div class="flex-initial">
+			<div class="flex flex-row">
+				<div class="flex-initial">
+					<a mat-button [href]="'mailto:' + data.email">
+						<mat-icon>email</mat-icon>
+					</a>
+				</div>
+				<div class="flex-initial">
+					<a mat-button href="https://twitter.com/">
+						<mat-icon>website</mat-icon>
+					</a>
+				</div>
+			</div>
+		</div>
 	</div>
 </mat-dialog-content>
 <mat-dialog-actions>
-	<button mat-button mat-dialog-close>Cancel</button>
-	<!-- The mat-dialog-close directive optionally accepts a value as a result for the dialog. -->
-	<button mat-button [mat-dialog-close]="true">Delete</button>
+	<button mat-button mat-dialog-close="">De acuerdo</button>
 </mat-dialog-actions>

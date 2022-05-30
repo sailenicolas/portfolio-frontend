@@ -10,6 +10,7 @@ import { SoftSkills } from 'src/app/interfaces/soft-skills';
 import { Projects } from 'src/app/interfaces/projects';
 import { DataService } from '../../../services/data.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ErrorGenericResponse } from '../../../interfaces/errorGenericResponse';
 
 @Component({
 	selector: 'form-about',
@@ -21,6 +22,7 @@ export class FormAboutMeComponent implements OnInit {
 	private about: Observable<Experiences | Education | About | SoftSkills | Projects | null> =
 		of(null);
 	private state: About | undefined;
+	public error: ErrorGenericResponse | null = null;
 
 	constructor(
 		private formHelper: FormHelperService,
@@ -61,6 +63,10 @@ export class FormAboutMeComponent implements OnInit {
 			this.formHelper.putForm(this.formGroup, this.componentToEdit, this.router).subscribe({
 				next: () => {
 					this.sucessfull = true;
+					this.routerState.navigate(['/portfolio']);
+				},
+				error: err => {
+					this.error = err.error;
 				},
 			});
 		}

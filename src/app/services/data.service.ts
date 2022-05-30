@@ -20,7 +20,7 @@ export class DataService {
 
 	constructor(private http: HttpClient) {}
 
-	private readonly URL_HOST = environment.urlHost + '/' + this.API_VERSION;
+	private readonly URL_HOST = environment.urlHost + this.API_VERSION;
 
 	private options = {
 		headers: new HttpHeaders(),
@@ -32,10 +32,10 @@ export class DataService {
 	): Observable<Experiences | Education | About | SoftSkills | Projects | null> {
 		let url = '/user';
 		if (flags.education) {
-			url += '/education/';
+			url += '/educations/';
 			return this.http.get<Education>(this.URL_HOST + url + id, this.options);
 		} else if (flags.experience) {
-			url += '/experience/';
+			url += '/experiences/';
 			return this.http.get<Experiences>(this.URL_HOST + url + id, this.options);
 		} else if (flags.softskills) {
 			url += '/softskills/';
@@ -64,14 +64,14 @@ export class DataService {
 	): Observable<Experiences | Education | About | SoftSkills | Projects | null> {
 		let url = '/user';
 		if (flags.education) {
-			url += '/education/';
+			url += '/educations/';
 			return this.http.put<Education>(
 				this.URL_HOST + url + id,
 				formGroup.value,
 				this.options
 			);
 		} else if (flags.experience) {
-			url += '/experience/';
+			url += '/experiences/';
 			return this.http.put<Experiences>(
 				this.URL_HOST + url + id,
 				formGroup.value,
@@ -103,7 +103,7 @@ export class DataService {
 			url += '/educations/';
 			return this.http.post<Education>(this.URL_HOST + url, formGroup.value, this.options);
 		} else if (flags.experience) {
-			url += '/experience/';
+			url += '/experiences/';
 			return this.http.post<Experiences>(this.URL_HOST + url, formGroup.value, this.options);
 		} else if (flags.softskills) {
 			url += '/softskills/';
