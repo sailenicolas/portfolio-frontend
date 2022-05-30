@@ -19,7 +19,7 @@ export class AuthService {
 	) {}
 
 	private readonly API_VERSION = environment.apiVersion;
-	private readonly URL_HOST = environment.urlHost + '/' + this.API_VERSION;
+	private readonly URL_HOST = environment.urlHost + this.API_VERSION;
 
 	login(loginForms: LoginForm): Observable<CurrentToken> {
 		let options = {

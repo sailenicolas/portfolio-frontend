@@ -3,11 +3,11 @@
 	<div
 		class="bg-red-700 border-l-2 border-b-2 border-l-red-400 border-b-red-300 my-2 text-red-100"
 		role="alert"
-		*ngFor="let err of this.errorArr">
+		*ngFor="let err of this.error.details.errorFields">
 		<p>{{ err.field | titlecase }} {{ err.message | lowercase }}</p>
 	</div>
-	<div *ngIf="this.errorSingle != null">
-		<h4>{{ this.errorSingle?.message }}</h4>
-		<p>{{ this.errorSingle?.details?.errorMessage }}</p>
+	<div *ngIf="this.error.details.errorFields === null">
+		<h4>{{ this.error?.message }}</h4>
+		<p>{{ this.error?.details?.errorMessage }}</p>
 	</div>
 </div>

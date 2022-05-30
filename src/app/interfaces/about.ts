@@ -5,4 +5,5 @@ export interface About {
 	imagen: string;
 	header: string;
 	email: string;
+	ubicacion: string;
 }

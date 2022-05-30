@@ -3,7 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { CurrentToken } from '../../models/current-token';
 import { Router } from '@angular/router';
-import { HttpErrorResponse } from '@angular/common/http';
+import { ErrorGenericResponse } from '../../interfaces/errorGenericResponse';
 
 @Component({
 	selector: 'app-login',
@@ -12,6 +12,8 @@ import { HttpErrorResponse } from '@angular/common/http';
 })
 export class LoginComponent {
 	hide: boolean = true;
+	public error: ErrorGenericResponse | null = null;
+	public isError: boolean = false;
 
 	constructor(
 		public currentUser: CurrentToken,
@@ -36,13 +38,13 @@ export class LoginComponent {
 						this.router.navigate(['/portfolio']).then(r => console.log(r));
 					}
 				},
-				error: (err: HttpErrorResponse) => {
-					console.log(err.statusText);
+				error: err => {
+					this.error = err.error;
+					this.isError = true;
 					this.hideSpinner = false;
 				},
 				complete: () => {
 					this.hideSpinner = false;
-					console.log(this.hideSpinner);
 				},
 			});
 		}
