@@ -26,7 +26,7 @@
 		<div class="flex-initial flex-grow self-end">
 			<app-shared-title [title]="about.nombre"></app-shared-title>
 			<div>
-				<a mat-icon-button
+				<a mat-icon-button (click)="this.getModal($event)"
 					>Informacion de contacto
 					<mat-icon>email</mat-icon>
 				</a>

@@ -5,16 +5,7 @@
 			<div class="col-span-6 border border-blue-700" *ngFor="let item of items">
 				<div class="grid gap-4 grid-cols-12">
 					<div class="col-span-3 p-3 mx-auto">
-						<img
-							class="object-cover object-center mb-2 rounded-xl h-[44px]"
-							[src]="item.imagen"
-							alt="blog"
-							*ngIf="item.imagen !== ''; else imgWork" />
-						<ng-template #imgWork>
-							<div>
-								<mat-icon>edit</mat-icon>
-							</div>
-						</ng-template>
+						<mat-icon>school_outline</mat-icon>
 					</div>
 					<div class="col-span-9">
 						<app-shared-title

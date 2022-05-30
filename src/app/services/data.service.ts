@@ -20,7 +20,7 @@ export class DataService {
 
 	constructor(private http: HttpClient) {}
 
-	private readonly URL_HOST = 'http://localhost:8080' + this.API_VERSION;
+	private readonly URL_HOST = environment.url_host + this.API_VERSION;
 
 	private options = {
 		headers: new HttpHeaders(),

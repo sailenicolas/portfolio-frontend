@@ -36,6 +36,7 @@ import { FormProjectsComponent } from './components/forms/projects/form-projects
 import { ErrorResponseComponent } from './components/forms/error-response/error-response.component';
 import { EnumToStringPipe } from './pipes/enum-to-string.pipe';
 import { FormDeleteGenericComponent } from './components/forms/form-delete-generic/form-delete-generic.component';
+import { AboutDialogComponent } from './components/about/modal/about-dialog.component';
 
 @NgModule({
 	declarations: [
@@ -59,6 +60,7 @@ import { FormDeleteGenericComponent } from './components/forms/form-delete-gener
 		ErrorResponseComponent,
 		EnumToStringPipe,
 		FormDeleteGenericComponent,
+		AboutDialogComponent,
 	],
 	imports: [
 		BrowserModule,
